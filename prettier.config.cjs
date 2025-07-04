@@ -17,5 +17,7 @@ module.exports = {
 				parser: 'astro'
 			}
 		}
-	]
+	],
+	// マークダウンファイルを除外
+	ignore: ['**/*.md']
 }

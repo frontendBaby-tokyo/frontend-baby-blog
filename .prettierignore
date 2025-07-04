@@ -1,5 +1,11 @@
 test/fixtures/**/*.md
 test/fixtures/**/*.astro
+
+# Markdown files and documentation
+*.md
+*.mdx
+docs/
+
 **/dist
 bun.lockb
 .github

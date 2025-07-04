@@ -1,0 +1,26 @@
+# Bun configuration file
+# See: https://bun.sh/docs/runtime/bunfig
+
+[install]
+# Enable cache for faster installs
+cache = true
+
+# Install development dependencies by default
+production = false
+
+# Automatically install peer dependencies
+auto = true
+
+# Registry configuration
+registry = "https://registry.npmjs.org/"
+
+[run]
+# Enable pre and post scripts (equivalent to enable-pre-post-scripts=true in .npmrc)
+scripts = true
+
+# Shell to use for running scripts
+shell = "system"
+
+[test]
+# Bun test configuration
+timeout = "30s"

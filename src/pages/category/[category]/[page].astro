@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import ListPosts from '@/components/ListPosts'
+import ListPostsSimple from '@/components/ListPostsSimple'
 import ListCategories from '@/components/ListCategories'
 import TitlePage from '@/components/TitlePage'
+import Sidebar from '@/components/Sidebar'
 import { sluglify, unsluglify, getCategories, getPosts } from '@/utils'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
@@ -36,8 +37,25 @@ const posts = page.data
 ---
 
 <BaseLayout title={categoryName}>
-	<TitlePage title={categoryName} />
+	<TitlePage title={categoryName || 'Category'} />
 	<ListCategories activeCategory={params.category} />
-	<ListPosts posts={posts} />
-	<Pagination page={page} />
+
+	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
+	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
+		<!-- メインコンテンツ -->
+		<main>
+			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
+				{categoryName} Posts
+			</h2>
+			<ListPostsSimple posts={posts} />
+			<div class='mt-8'>
+				<Pagination page={page} />
+			</div>
+		</main>
+
+		<!-- サイドバー -->
+		<div class='order-first lg:order-last'>
+			<Sidebar />
+		</div>
+	</div>
 </BaseLayout>

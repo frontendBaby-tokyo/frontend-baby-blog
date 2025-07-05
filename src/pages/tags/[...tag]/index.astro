@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import ListPosts from '@/components/ListPosts'
+import ListPostsSimple from '@/components/ListPostsSimple'
 import TitlePage from '@/components/TitlePage'
+import Sidebar from '@/components/Sidebar'
 import { getTags, getPostByTag } from '@/utils'
 
 export async function getStaticPaths() {
@@ -15,10 +16,25 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props
 
-const posts = await getPostByTag(tag)
+const posts = await getPostByTag(tag as string)
 ---
 
-<BaseLayout title={tag}>
-	<TitlePage title={tag} />
-	<ListPosts posts={posts} />
+<BaseLayout title={tag as string}>
+	<TitlePage title={tag as string} />
+
+	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
+	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
+		<!-- メインコンテンツ -->
+		<main>
+			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
+				Posts tagged with "#{tag}"
+			</h2>
+			<ListPostsSimple posts={posts} />
+		</main>
+
+		<!-- サイドバー -->
+		<div class='order-first lg:order-last'>
+			<Sidebar />
+		</div>
+	</div>
 </BaseLayout>

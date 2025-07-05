@@ -1,0 +1,32 @@
+---
+import { getRecommendedPosts } from '@/utils'
+import FormattedDate from './FormattedDate.astro'
+
+// Recommended Postsとして推薦記事を取得
+const posts = await getRecommendedPosts(3)
+---
+
+<div class='bg-gray-50 dark:bg-gray-800 rounded-lg p-4'>
+	<h3 class='text-lg font-semibold mb-4 text-gray-900 dark:text-white'>Recommended Posts</h3>
+	<div class='space-y-3'>
+		{
+			posts.map((post) => (
+				<div class='border-b border-gray-200 dark:border-gray-600 pb-3 last:border-b-0 last:pb-0'>
+					<a
+						href={`/post/${post.slug}/`}
+						class='block hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
+					>
+						<h4 class='font-medium text-sm text-gray-900 dark:text-white line-clamp-2 mb-1'>
+							{post.data.title}
+						</h4>
+					</a>
+					<div class='flex items-center text-xs text-gray-500 dark:text-gray-400'>
+						<FormattedDate date={post.data.pubDate} />
+						<span class='mx-2'>•</span>
+						<span>{post.data.category}</span>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>

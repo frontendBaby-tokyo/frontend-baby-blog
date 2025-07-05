@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-	/* body {
+	body {
 		transition: background-color 0.5s ease;
-	} */
+	}
 
 	.prose code {
 		@apply text-base;
@@ -28,13 +28,17 @@
 	}
 }
 
-.glass {
-	background: rgba(57, 56, 56, 0.52);
-	backdrop-filter: blur(13px) saturate(150%);
-	-webkit-backdrop-filter: blur(13px) saturate(150%);
-	z-index: -1;
+@layer components {
+    .glass {
+        background: rgba(57, 56, 56, 0.52);
+        backdrop-filter: blur(13px) saturate(150%);
+        -webkit-backdrop-filter: blur(13px) saturate(150%);
+        z-index: -1;
+    }
 }
 
-.shadow {
-	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
+@layer utilities {
+    .shadow {
+        box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
+    }
 }

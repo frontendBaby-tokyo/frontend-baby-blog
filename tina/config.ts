@@ -63,6 +63,12 @@ export default defineConfig({
 						description: 'If this is checked the post will not be published'
 					},
 					{
+						name: 'recommended',
+						label: 'Recommended Post',
+						type: 'boolean',
+						description: 'Mark this post as recommended to appear in the sidebar'
+					},
+					{
 						type: 'string',
 						name: 'tags',
 						required: true,

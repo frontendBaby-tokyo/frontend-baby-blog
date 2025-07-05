@@ -1,22 +1,38 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
+import Sidebar from '@/components/Sidebar'
 import { getTags } from '@/utils'
 const tags = await getTags()
 ---
 
 <BaseLayout title='Tags'>
 	<TitlePage title='Tags' />
-	<div class='flex justify-center flex-wrap gap-4'>
-		{
-			tags.map((tag) => (
-				<a
-					href={`/tags/${tag}`}
-					class='inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'
-				>
-					#{tag}
-				</a>
-			))
-		}
+
+	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
+	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
+		<!-- メインコンテンツ -->
+		<main>
+			<h2 class='text-lg font-medium tracking-wide mb-6 text-gray-900 dark:text-white'>All Tags</h2>
+			<div class='flex justify-start flex-wrap gap-3'>
+				{
+					tags.map((tag) => (
+						<a
+							href={`/tags/${tag}`}
+							class='inline-block bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 
+							       text-blue-800 dark:text-blue-200 text-sm px-3 py-2 rounded-full 
+							       transition-colors duration-200 capitalize font-medium shadow-sm hover:shadow-md'
+						>
+							#{tag}
+						</a>
+					))
+				}
+			</div>
+		</main>
+
+		<!-- サイドバー -->
+		<div class='order-first lg:order-last'>
+			<Sidebar />
+		</div>
 	</div>
 </BaseLayout>

@@ -8,6 +8,13 @@ import { siteConfig } from './src/data/site.config'
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
+	i18n: {
+		defaultLocale: 'ja',
+		locales: ['ja', 'en'],
+		routing: {
+			prefixDefaultLocale: true
+		}
+	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		drafts: true,

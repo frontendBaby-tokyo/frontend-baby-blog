@@ -1,0 +1,87 @@
+---
+import { getLangFromUrl, getAlternatePath, type Languages } from '@/i18n/utils'
+import { languages, defaultLang } from '@/i18n/ui'
+
+const currentLang = getLangFromUrl(Astro.url)
+const currentPath = Astro.url.pathname
+
+// デバッグ情報（開発時用）
+console.log('Debug LanguageSwitch:', {
+	url: Astro.url.pathname,
+	currentLang,
+	currentPath,
+	defaultLang
+})
+
+// 対象言語を決定（より安全な方法）
+const targetLang: Languages = currentLang === 'ja' ? 'en' : 'ja'
+const alternatePath = getAlternatePath(currentPath, currentLang, targetLang)
+
+console.log('Target:', { targetLang, alternatePath })
+---
+
+<div class='language-switch' data-current-lang={currentLang}>
+	<a
+		href={alternatePath}
+		class='flex items-center gap-1 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800'
+		aria-label={`Switch to ${languages[targetLang]}`}
+		title={`Switch to ${languages[targetLang]}`}
+	>
+		<span class='flag text-lg'>{targetLang === 'ja' ? '🇯🇵' : '🇺🇸'}</span>
+		<span class='lang-text font-medium'>{languages[targetLang]}</span>
+	</a>
+</div>
+
+<script>
+	// ページ読み込み時とナビゲーション時に言語スイッチを更新
+	function updateLanguageSwitch() {
+		const currentPath = window.location.pathname
+		const isJapanese = currentPath.startsWith('/ja') || currentPath === '/'
+		const currentLang = isJapanese ? 'ja' : 'en'
+		const targetLang = currentLang === 'ja' ? 'en' : 'ja'
+
+		const languageSwitch = document.querySelector('.language-switch')
+		const flagSpan = languageSwitch?.querySelector('.flag')
+		const textSpan = languageSwitch?.querySelector('.lang-text')
+		const link = languageSwitch?.querySelector('a')
+
+		if (languageSwitch && flagSpan && textSpan && link) {
+			// 現在の言語をdata属性に設定
+			languageSwitch.setAttribute('data-current-lang', currentLang)
+
+			// ターゲット言語に応じて表示を更新
+			flagSpan.textContent = targetLang === 'ja' ? '🇯🇵' : '🇺🇸'
+			textSpan.textContent = targetLang === 'ja' ? '日本語' : 'English'
+
+			// リンクのhrefを更新
+			const pathWithoutLang = currentPath.replace(/^\/(ja|en)/, '') || '/'
+			const newPath = `/${targetLang}${pathWithoutLang}`
+			link.setAttribute('href', newPath)
+
+			// アクセシビリティ属性も更新
+			const langName = targetLang === 'ja' ? '日本語' : 'English'
+			link.setAttribute('aria-label', `Switch to ${langName}`)
+			link.setAttribute('title', `Switch to ${langName}`)
+		}
+	}
+
+	// 初回読み込み時
+	document.addEventListener('DOMContentLoaded', updateLanguageSwitch)
+
+	// Astroのページ遷移時（View Transitionsが有効な場合）
+	document.addEventListener('astro:page-load', updateLanguageSwitch)
+
+	// 通常のページ遷移時（fallback）
+	document.addEventListener('astro:after-swap', updateLanguageSwitch)
+</script>
+
+<style>
+	.language-switch a {
+		@apply select-none;
+	}
+
+	.language-switch a:hover {
+		@apply scale-105;
+		transform-origin: center;
+	}
+</style>

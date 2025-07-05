@@ -1,0 +1,35 @@
+---
+import ListCategories from '@/components/ListCategories'
+import ListPostsSimple from '@/components/ListPostsSimple'
+import TitlePage from '@/components/TitlePage'
+import Sidebar from '@/components/Sidebar'
+import BaseLayout from '@/layouts/BaseLayout'
+import { getPosts } from '@/utils'
+import { siteConfig } from '@/site-config'
+import { useTranslations } from '@/i18n/utils'
+
+const MAX_POSTS = 5 // max number of posts to show on the home page
+const posts = await getPosts(MAX_POSTS)
+const t = useTranslations('en')
+---
+
+<BaseLayout title={t('nav.home')}>
+	<TitlePage title={siteConfig.title} />
+	<ListCategories />
+
+	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
+	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
+		<!-- メインコンテンツ -->
+		<main>
+			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
+				{t('posts.latest')}
+			</h2>
+			<ListPostsSimple posts={posts} />
+		</main>
+
+		<!-- サイドバー -->
+		<div class='order-first lg:order-last'>
+			<Sidebar />
+		</div>
+	</div>
+</BaseLayout>

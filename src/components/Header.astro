@@ -4,11 +4,24 @@ import MenuIcon from './icons/MenuIcon.astro'
 import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
+import LanguageSwitch from '@/components/LanguageSwitch'
+import TwitterIcon from './icons/TwitterIcon.astro'
+import GithubIcon from './icons/GithubIcon.astro'
 import { SOCIALNETWORKS } from '@/data/links'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+// アイコンマッピング
+const iconMap = {
+	TwitterIcon,
+	GithubIcon
+}
 ---
 
 <header class='relative flex items-center h-12 font-semibold'>
-	<a class='text-lg mr-auto' href='/'>Home</a>
+	<a class='text-lg mr-auto' href={`/${lang}/`}>{t('nav.home')}</a>
 
 	<div
 		id='astro-header-drawer'
@@ -20,18 +33,22 @@ import { SOCIALNETWORKS } from '@/data/links'
 			<div
 				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
 			>
-				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl md:text-base'>
-					<TagIcon /> Tags
+				<HeaderLink href={`/${lang}/tags`} class='flex items-center gap-1 text-2xl md:text-base'>
+					<TagIcon />
+					{t('nav.tags')}
 				</HeaderLink>
 			</div>
 
 			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
 				{
-					SOCIALNETWORKS.map((network) => (
-						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
-							<span>{<network.icon />} </span>
-						</HeaderLink>
-					))
+					SOCIALNETWORKS.map((network) => {
+						const IconComponent = iconMap[network.icon as keyof typeof iconMap]
+						return (
+							<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
+								<IconComponent />
+							</HeaderLink>
+						)
+					})
 				}
 			</div>
 		</nav>
@@ -41,6 +58,7 @@ import { SOCIALNETWORKS } from '@/data/links'
 		<div>
 			<Search />
 		</div>
+		<LanguageSwitch />
 		<ToggleTheme />
 		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
 			<MenuIcon />

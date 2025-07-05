@@ -1,5 +1,6 @@
 ---
 import FormattedDate from './FormattedDate.astro'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
 
 const {
 	id,
@@ -7,6 +8,12 @@ const {
 	readTime,
 	slug
 } = Astro.props
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+// readTimeから数値部分を抽出（例: "3 min read" → 3）
+const minutes = parseInt(readTime) || 3
 ---
 
 <article
@@ -32,7 +39,13 @@ const {
 		>
 			{category}
 		</span>
-		{readTime && <span class='text-sm text-gray-500 dark:text-gray-400'>{readTime}</span>}
+		{
+			readTime && (
+				<span class='text-sm text-gray-500 dark:text-gray-400'>
+					{minutes} {t('posts.minutesRead')}
+				</span>
+			)
+		}
 	</div>
 
 	<p class='text-gray-700 dark:text-gray-300 line-clamp-3 leading-relaxed'>

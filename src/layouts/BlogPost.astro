@@ -20,6 +20,9 @@ const { title, description, pubDate, heroImage, tags } = data
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
+// readTimeから数値部分を抽出（例: "3 min read" → 3）
+const minutes = parseInt(readTime) || 3
+
 const articleDate = pubDate.toISOString()
 ---
 
@@ -38,7 +41,8 @@ const articleDate = pubDate.toISOString()
 						<FormattedDate date={pubDate} />
 					</p>
 					<p class='text-center text-sm text-opacity-50 font-bold'>
-						- {readTime}
+						- {minutes}
+						{t('posts.minutesRead')}
 					</p>
 				</div>
 				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>

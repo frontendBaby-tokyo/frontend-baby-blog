@@ -8,8 +8,7 @@ export function remarkReadingTime() {
 	return function (tree: unknown, { data }: any) {
 		const textOnPage = toString(tree)
 		const readingTime = getReadingTime(textOnPage)
-		// readingTime.text will give us minutes read as a friendly string,
-		// i.e. "3 min read"
+		// Keep the original text for now (simpler solution)
 		data.astro.frontmatter.minutesRead = readingTime.text
 	}
 }

@@ -4,19 +4,26 @@ import ListPostsSimple from '@/components/ListPostsSimple'
 import TitlePage from '@/components/TitlePage'
 import Sidebar from '@/components/Sidebar'
 import { getTags, getPostByTag } from '@/utils'
+import { useTranslations } from '@/i18n/utils'
+import type { Languages } from '@/i18n/utils'
 
 export async function getStaticPaths() {
 	const tags = await getTags()
+	const paths = []
 
-	return tags.map((tag) => ({
-		params: { tag },
-		props: { tag }
-	}))
+	for (const tag of tags) {
+		paths.push(
+			{ params: { lang: 'ja', tag: tag }, props: { tag, lang: 'ja' } },
+			{ params: { lang: 'en', tag: tag }, props: { tag, lang: 'en' } }
+		)
+	}
+
+	return paths
 }
 
-const { tag } = Astro.props
-
+const { tag, lang } = Astro.props
 const posts = await getPostByTag(tag as string)
+const t = useTranslations(lang as Languages)
 ---
 
 <BaseLayout title={tag as string}>
@@ -27,7 +34,7 @@ const posts = await getPostByTag(tag as string)
 		<!-- メインコンテンツ -->
 		<main>
 			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
-				Posts tagged with "#{tag}"
+				{lang === 'ja' ? `「${tag}」タグの記事` : `Posts tagged with "#${tag}"`}
 			</h2>
 			<ListPostsSimple posts={posts} />
 		</main>

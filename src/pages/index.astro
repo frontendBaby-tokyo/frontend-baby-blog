@@ -6,6 +6,10 @@ import Sidebar from '@/components/Sidebar'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 import { siteConfig } from '@/site-config'
+import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 
 const MAX_POSTS = 5 // max number of posts to show on the home page
 const posts = await getPosts(MAX_POSTS)
@@ -20,7 +24,7 @@ const posts = await getPosts(MAX_POSTS)
 		<!-- メインコンテンツ -->
 		<main>
 			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
-				Latest Posts
+				{t('posts.latest')}
 			</h2>
 			<ListPostsSimple posts={posts} />
 		</main>

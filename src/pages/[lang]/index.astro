@@ -7,10 +7,16 @@ import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 import { siteConfig } from '@/site-config'
 import { useTranslations } from '@/i18n/utils'
+import type { Languages } from '@/i18n/utils'
 
+export async function getStaticPaths() {
+	return [{ params: { lang: 'ja' } }, { params: { lang: 'en' } }]
+}
+
+const { lang } = Astro.params
 const MAX_POSTS = 5 // max number of posts to show on the home page
 const posts = await getPosts(MAX_POSTS)
-const t = useTranslations('ja')
+const t = useTranslations(lang as Languages)
 ---
 
 <BaseLayout title={t('nav.home')}>

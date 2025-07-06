@@ -9,21 +9,36 @@ import { getPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
 import Disqus from '@/components/Disqus'
 import { disqusConfig } from '@/data/disqus.config'
+import { useTranslations } from '@/i18n/utils'
+import type { Languages } from '@/i18n/utils'
 
 const posts = await getCollection('blog')
+
 export async function getStaticPaths() {
 	const posts = await getPosts()
+	const languages = ['ja', 'en'] as const
 
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post
-	}))
+	return languages.flatMap((lang) =>
+		posts.map((post) => ({
+			params: {
+				lang,
+				slug: post.slug
+			},
+			props: { post, lang }
+		}))
+	)
 }
-type Props = CollectionEntry<'blog'>
 
-const post = Astro.props
+type Props = {
+	post: CollectionEntry<'blog'>
+	lang: Languages
+}
+
+const { post, lang } = Astro.props
+const t = useTranslations(lang)
+
 const MAX_POSTS = 3
-const getRelatedPosts = (post: Props) => {
+const getRelatedPosts = (post: CollectionEntry<'blog'>) => {
 	const lowercaseTags = post.data.tags.map((tag) => tag.toLowerCase())
 	const relatedPosts = posts.filter(
 		(p) => p.slug !== post.slug && p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
@@ -61,7 +76,7 @@ const disqusEnabled = disqusConfig.enabled
 
 			<!-- related posts -->
 			<footer>
-				<h2 class='font-bold text-lg dark:text-white mb-6'>Related Posts</h2>
+				<h2 class='font-bold text-lg dark:text-white mb-6'>{t('related.posts')}</h2>
 				<ListRelatedPosts posts={relatedPosts} />
 			</footer>
 		</article>

@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
 import Sidebar from '@/components/Sidebar'
-import { getTags } from '@/utils'
+import { getCategories } from '@/utils'
 import { useTranslations } from '@/i18n/utils'
 import type { Languages } from '@/i18n/utils'
 
@@ -11,30 +11,30 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params
-const tags = await getTags()
+const categories = await getCategories()
 const t = useTranslations(lang as Languages)
 ---
 
-<BaseLayout title={t('nav.tags')}>
-	<TitlePage title={t('nav.tags')} />
+<BaseLayout title={t('nav.categories')}>
+	<TitlePage title={t('nav.categories')} />
 
 	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
 	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
 		<!-- メインコンテンツ -->
 		<main>
 			<h2 class='text-lg font-medium tracking-wide mb-6 text-gray-900 dark:text-white'>
-				{t('tags.allTags')}
+				{t('categories.allCategories')}
 			</h2>
 			<div class='flex justify-start flex-wrap gap-3'>
 				{
-					tags.map((tag) => (
+					categories.map((category) => (
 						<a
-							href={`/${lang}/tags/${tag}`}
-							class='inline-block bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 
-							       text-blue-800 dark:text-blue-200 text-sm px-3 py-2 rounded-full 
+							href={`/${lang}/category/${category.toLowerCase()}`}
+							class='inline-block bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800 
+							       text-green-800 dark:text-green-200 text-sm px-3 py-2 rounded-full 
 							       transition-colors duration-200 capitalize font-medium shadow-sm hover:shadow-md'
 						>
-							#{tag}
+							{category}
 						</a>
 					))
 				}

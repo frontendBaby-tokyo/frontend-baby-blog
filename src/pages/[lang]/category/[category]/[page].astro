@@ -6,34 +6,43 @@ import TitlePage from '@/components/TitlePage'
 import Sidebar from '@/components/Sidebar'
 import { sluglify, unsluglify, getCategories, getPosts } from '@/utils'
 import { siteConfig } from '@/data/site.config'
-import Pagination from '@/components/Pagination.astro'
+import Pagination from '@/components/Pagination'
+import { useTranslations } from '@/i18n/utils'
+import type { Languages } from '@/i18n/utils'
 
 export async function getStaticPaths({ paginate }: any) {
 	const categories = await getCategories()
 	const allPosts = await getPosts()
+	const languages = ['ja', 'en']
 
-	return categories.flatMap((category: string) => {
-		const unsluglifyNameCategory = unsluglify(category!.toLowerCase())
-		const filteredPosts = allPosts.filter(
-			(post) => post.data.category.toLowerCase() === unsluglifyNameCategory
-		)
+	return languages.flatMap((lang) => {
+		return categories.flatMap((category: string) => {
+			const unsluglifyNameCategory = unsluglify(category!.toLowerCase())
+			const filteredPosts = allPosts.filter(
+				(post) => post.data.category.toLowerCase() === unsluglifyNameCategory
+			)
 
-		return paginate(filteredPosts, {
-			params: {
-				category: sluglify(category.toLowerCase())
-			},
-			pageSize: siteConfig.paginationSize
+			return paginate(filteredPosts, {
+				params: {
+					lang: lang,
+					category: sluglify(category.toLowerCase())
+				},
+				pageSize: siteConfig.paginationSize
+			})
 		})
 	})
 }
+
 const params = Astro.params
 const { page } = Astro.props
+const { lang } = params
 
 const unsluglifyNameCategory = unsluglify(params.category!.toLowerCase())
 const categoryName = (await getCategories()).find(
 	(category) => category.toLowerCase() === unsluglifyNameCategory
 )
 const posts = page.data
+const t = useTranslations(lang as Languages)
 ---
 
 <BaseLayout title={categoryName}>
@@ -45,7 +54,8 @@ const posts = page.data
 		<!-- メインコンテンツ -->
 		<main>
 			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
-				{categoryName} Posts
+				{categoryName}
+				{t('posts.title')}
 			</h2>
 			<ListPostsSimple posts={posts} />
 			<div class='mt-8'>

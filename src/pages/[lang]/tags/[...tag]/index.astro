@@ -34,7 +34,7 @@ const t = useTranslations(lang as Languages)
 		<!-- メインコンテンツ -->
 		<main>
 			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
-				{lang === 'ja' ? `「${tag}」タグの記事` : `Posts tagged with "#${tag}"`}
+				{lang === 'ja' ? `「${tag}」${t('tags.taggedWith')}` : `${t('tags.taggedWith')} "#${tag}"`}
 			</h2>
 			<ListPostsSimple posts={posts} />
 		</main>

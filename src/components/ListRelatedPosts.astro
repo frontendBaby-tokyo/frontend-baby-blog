@@ -3,12 +3,14 @@ import type { CollectionEntry } from 'astro:content'
 
 import { cn } from '@/utils'
 import { Image } from 'astro:assets'
+import { getLangFromUrl } from '@/i18n/utils'
 
 type Props = {
 	posts: CollectionEntry<'blog'>[]
 }
 
 const { posts } = Astro.props
+const lang = getLangFromUrl(Astro.url)
 ---
 
 <section class={cn(`flex flex-col md:flex-row sm:justify-between gap-8`)}>
@@ -28,7 +30,7 @@ const { posts } = Astro.props
 							/>
 						</div>
 						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/post/${post.slug}/`}>
+							<a class='font-medium  hover:underline' href={`/${lang}/post/${post.slug}/`}>
 								{post.data.title}
 							</a>
 						</header>

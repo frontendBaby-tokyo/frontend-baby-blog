@@ -10,7 +10,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	site: 'https://samplesample', // Write here your website url
+	site: 'https://frontendbaby-tokyo.github.io/frontend-baby-blog', // GitHub Pages URL
 	author: 'frontendBaby-tokyo', // Site author
 	title: 'frontendBaby-Tokyo', // Site title.
 	description: 'Tech blog by frontendBaby-tokyo. Main content focuses on frontend technologies.', // Description to display in the meta tags

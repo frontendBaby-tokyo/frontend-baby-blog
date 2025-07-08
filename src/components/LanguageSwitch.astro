@@ -35,33 +35,36 @@ console.log('Target:', { targetLang, alternatePath })
 <script>
 	// ページ読み込み時とナビゲーション時に言語スイッチを更新
 	function updateLanguageSwitch() {
+		const languageMap: { [key: string]: string } = { '/ja/': '/en/', '/en/': '/ja/' }
 		const currentPath = window.location.pathname
-		const isJapanese = currentPath.startsWith('/ja') || currentPath === '/'
-		const currentLang = isJapanese ? 'ja' : 'en'
-		const targetLang = currentLang === 'ja' ? 'en' : 'ja'
-
+		const link = document.querySelector('.language-switch a')
 		const languageSwitch = document.querySelector('.language-switch')
-		const flagSpan = languageSwitch?.querySelector('.flag')
-		const textSpan = languageSwitch?.querySelector('.lang-text')
-		const link = languageSwitch?.querySelector('a')
 
-		if (languageSwitch && flagSpan && textSpan && link) {
-			// 現在の言語をdata属性に設定
-			languageSwitch.setAttribute('data-current-lang', currentLang)
+		if (link && languageSwitch) {
+			// 現在の言語を検出
+			const currentLang = currentPath.includes('/ja/') ? 'ja' : 'en'
+			const targetLang = currentLang === 'ja' ? 'en' : 'ja'
 
-			// ターゲット言語に応じて表示を更新
-			flagSpan.textContent = targetLang === 'ja' ? '🇯🇵' : '🇺🇸'
-			textSpan.textContent = targetLang === 'ja' ? '日本語' : 'English'
-
-			// リンクのhrefを更新
-			const pathWithoutLang = currentPath.replace(/^\/(ja|en)/, '') || '/'
-			const newPath = `/${targetLang}${pathWithoutLang}`
+			// href属性を更新
+			const newPath = currentPath.replace(/\/(ja|en)\//, (match) => languageMap[match])
 			link.setAttribute('href', newPath)
 
-			// アクセシビリティ属性も更新
-			const langName = targetLang === 'ja' ? '日本語' : 'English'
-			link.setAttribute('aria-label', `Switch to ${langName}`)
-			link.setAttribute('title', `Switch to ${langName}`)
+			// data-current-lang属性を更新
+			languageSwitch.setAttribute('data-current-lang', currentLang)
+
+			// フラグとテキストを更新
+			const flagElement = link.querySelector('.flag')
+			const textElement = link.querySelector('.lang-text')
+
+			if (flagElement && textElement) {
+				flagElement.textContent = targetLang === 'ja' ? '🇯🇵' : '🇺🇸'
+				textElement.textContent = targetLang === 'ja' ? '日本語' : 'English'
+
+				// aria-labelとtitle属性も更新
+				const targetLanguageName = targetLang === 'ja' ? '日本語' : 'English'
+				link.setAttribute('aria-label', `Switch to ${targetLanguageName}`)
+				link.setAttribute('title', `Switch to ${targetLanguageName}`)
+			}
 		}
 	}
 

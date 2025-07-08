@@ -8,7 +8,7 @@ import { siteConfig } from './src/data/site.config'
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
-	base: '/frontend-baby-blog',
+	base: process.env.GITHUB_ACTIONS || process.env.NODE_ENV === 'production' ? '/frontend-baby-blog/' : '/',
 	output: 'static',
 	i18n: {
 		defaultLocale: 'ja',

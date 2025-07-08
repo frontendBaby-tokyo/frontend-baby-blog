@@ -21,7 +21,7 @@ const minutes = parseInt(readTime) || 3
 >
 	<div class='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2'>
 		<a
-			href={`/${lang}/post/${slug}/`}
+			href={`${import.meta.env.BASE_URL}${lang}/post/${slug}/`}
 			class='hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
 		>
 			<h2 class='text-xl font-semibold text-gray-900 dark:text-white line-clamp-2'>

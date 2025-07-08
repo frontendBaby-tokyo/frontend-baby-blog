@@ -18,7 +18,8 @@ export function useTranslations(lang: Languages) {
 export function getLocalizedPath(path: string, lang: Languages): string {
 	// 既にプレフィックスが付いている場合は、それを置き換える
 	const pathWithoutLang = path.replace(/^\/(ja|en)/, '')
-	return `/${lang}${pathWithoutLang}`
+	const basePath = import.meta.env.BASE_URL || ''
+	return `${basePath}/${lang}${pathWithoutLang}`
 }
 
 export function getAlternatePath(
@@ -26,9 +27,36 @@ export function getAlternatePath(
 	currentLang: Languages,
 	targetLang: Languages
 ): string {
-	// 現在の言語プレフィックスを対象言語に置き換える
-	const pathWithoutLang = currentPath.replace(new RegExp(`^/${currentLang}`), '')
-	return `/${targetLang}${pathWithoutLang}`
+	console.log('getAlternatePath inputs:', { currentPath, currentLang, targetLang })
+
+	// baseパスを取得して正規化
+	let basePath = import.meta.env.BASE_URL || ''
+	// basePathが"/"の場合は空文字列として扱う
+	if (basePath === '/') {
+		basePath = ''
+	}
+	console.log('normalized basePath:', basePath)
+
+	// 現在のパスからbaseパスを除去
+	let pathWithoutBase = currentPath
+	if (basePath && currentPath.startsWith(basePath)) {
+		pathWithoutBase = currentPath.substring(basePath.length)
+	}
+	console.log('pathWithoutBase:', pathWithoutBase)
+
+	// 言語プレフィックスを除去
+	// パターン1: /en/ -> /
+	// パターン2: /en -> /
+	// パターン3: en/ -> /
+	const pathWithoutLang = pathWithoutBase.replace(new RegExp(`^/?${currentLang}(/|$)`), '') || '/'
+	console.log('pathWithoutLang:', pathWithoutLang)
+
+	// 新しいパスを生成
+	const normalizedPath = pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`
+	const result = `${basePath}/${targetLang}${normalizedPath}`
+	console.log('getAlternatePath result:', result)
+
+	return result
 }
 
 export function getPathWithoutLang(path: string): string {

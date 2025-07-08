@@ -121,12 +121,12 @@ const supportedLangs = ['ja', 'en']
 			</p>
 
 			<div class='links'>
-				<a href='/ja' class='link'>🇯🇵 日本語</a>
-				<a href='/en' class='link'>🇺🇸 English</a>
+				<a href={`${import.meta.env.BASE_URL}/ja`} class='link'>🇯🇵 日本語</a>
+				<a href={`${import.meta.env.BASE_URL}/en`} class='link'>🇺🇸 English</a>
 			</div>
 		</div>
 
-		<script>
+		<script define:vars={{ basePath: import.meta.env.BASE_URL }}>
 			// ブラウザの言語設定を取得
 			function detectLanguage() {
 				const supportedLangs = ['ja', 'en']
@@ -149,7 +149,7 @@ const supportedLangs = ['ja', 'en']
 			// 即座にリダイレクト実行
 			function redirect() {
 				const targetLang = detectLanguage()
-				const targetUrl = `/${targetLang}`
+				const targetUrl = `${basePath}/${targetLang}`
 
 				// 0.1秒後にリダイレクト（UXを考慮した最小限の遅延）
 				setTimeout(() => {

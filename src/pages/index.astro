@@ -1,0 +1,172 @@
+---
+import { siteConfig } from '@/data/site.config'
+
+// デフォルトの言語とサポートされている言語
+const defaultLang = 'ja'
+const supportedLangs = ['ja', 'en']
+---
+
+<!doctype html>
+<html lang='ja'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<title>Redirecting... - {siteConfig.title}</title>
+		<meta name='description' content='Redirecting to the appropriate language version' />
+
+		<!-- SEO: 検索エンジンにインデックスされないようにする -->
+		<meta name='robots' content='noindex, nofollow' />
+
+		<!-- デフォルト言語へのcanonical -->
+		<link rel='canonical' href={`${siteConfig.site}/${defaultLang}`} />
+
+		<!-- フォールバック用のメタリフレッシュ（1秒後） -->
+		<meta http-equiv='refresh' content={`1;url=${siteConfig.site}/${defaultLang}`} />
+
+		<!-- ファビコン -->
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+
+		<style>
+			body {
+				font-family:
+					system-ui,
+					-apple-system,
+					sans-serif;
+				margin: 0;
+				padding: 2rem;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-align: center;
+			}
+
+			.container {
+				max-width: 500px;
+				padding: 2rem;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				backdrop-filter: blur(10px);
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+			}
+
+			h1 {
+				margin: 0 0 1rem 0;
+				font-size: 1.5rem;
+				font-weight: 600;
+			}
+
+			p {
+				margin: 0 0 1.5rem 0;
+				opacity: 0.9;
+			}
+
+			.links {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+
+			.link {
+				display: inline-block;
+				padding: 0.75rem 1.5rem;
+				background: rgba(255, 255, 255, 0.2);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 500;
+				transition: all 0.2s ease;
+				border: 1px solid rgba(255, 255, 255, 0.3);
+			}
+
+			.link:hover {
+				background: rgba(255, 255, 255, 0.3);
+				transform: translateY(-2px);
+			}
+
+			.spinner {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				border-radius: 50%;
+				border-top-color: white;
+				animation: spin 0.8s ease-in-out infinite;
+				margin-right: 0.5rem;
+			}
+
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			.hidden {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<h1>
+				<span class='spinner'></span>
+				リダイレクトしています...
+			</h1>
+			<p>
+				適切な言語ページに移動中です。自動で移動しない場合は、以下のリンクをクリックしてください。
+			</p>
+
+			<div class='links'>
+				<a href='/ja' class='link'>🇯🇵 日本語</a>
+				<a href='/en' class='link'>🇺🇸 English</a>
+			</div>
+		</div>
+
+		<script>
+			// ブラウザの言語設定を取得
+			function detectLanguage() {
+				const supportedLangs = ['ja', 'en']
+				const defaultLang = 'ja'
+
+				// navigator.languageまたはnavigator.languagesから言語を取得
+				const browserLangs = navigator.languages || [navigator.language]
+
+				// ブラウザの言語設定をチェック
+				for (const browserLang of browserLangs) {
+					const lang = browserLang.toLowerCase().split('-')[0] // 'ja-JP' -> 'ja'
+					if (supportedLangs.includes(lang)) {
+						return lang
+					}
+				}
+
+				return defaultLang
+			}
+
+			// 即座にリダイレクト実行
+			function redirect() {
+				const targetLang = detectLanguage()
+				const targetUrl = `/${targetLang}`
+
+				// 0.1秒後にリダイレクト（UXを考慮した最小限の遅延）
+				setTimeout(() => {
+					window.location.href = targetUrl
+				}, 100)
+			}
+
+			// ページ読み込み完了後に実行
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', redirect)
+			} else {
+				redirect()
+			}
+
+			// デバッグ情報（開発時のみ）
+			console.log('Browser languages:', navigator.languages)
+			console.log('Detected language:', detectLanguage())
+		</script>
+	</body>
+</html>

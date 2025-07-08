@@ -8,6 +8,8 @@ import { siteConfig } from './src/data/site.config'
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
+	base: '/frontend-baby-blog',
+	output: 'static',
 	i18n: {
 		defaultLocale: 'ja',
 		locales: ['ja', 'en'],

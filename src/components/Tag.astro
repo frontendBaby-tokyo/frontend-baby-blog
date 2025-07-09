@@ -1,11 +1,9 @@
 ---
-import { getLangFromUrl } from '@/i18n/utils'
-
 export interface Props {
 	tag: string
 }
 const { tag } = Astro.props
-const lang = getLangFromUrl(Astro.url)
+const { lang } = Astro.params
 ---
 
 <a

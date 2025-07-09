@@ -18,7 +18,7 @@
 	"scripts": {
 		"dev": "bunx tinacms dev -c \"astro dev\"",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "astro build && bun run preview",
 		"build:gh-pages": "astro build",
 		"sync": "astro sync",
 		"preview": "astro preview",

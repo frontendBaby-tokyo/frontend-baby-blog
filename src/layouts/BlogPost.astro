@@ -5,7 +5,7 @@ import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
-import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import { useTranslations, type Languages } from '@/i18n/utils'
 
 type Props = {
 	id: CollectionEntry<'blog'>['id']
@@ -17,8 +17,8 @@ type Props = {
 const { data, readTime, headings, id } = Astro.props
 const { title, description, pubDate, heroImage, tags } = data
 
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const { lang } = Astro.params
+const t = useTranslations(lang as Languages)
 
 // readTimeから数値部分を抽出（例: "3 min read" → 3）
 const minutes = parseInt(readTime) || 3

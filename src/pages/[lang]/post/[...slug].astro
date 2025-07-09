@@ -34,8 +34,9 @@ type Props = {
 	lang: Languages
 }
 
-const { post, lang } = Astro.props
-const t = useTranslations(lang)
+const { post } = Astro.props
+const { lang } = Astro.params
+const t = useTranslations(lang as Languages)
 
 const MAX_POSTS = 3
 const getRelatedPosts = (post: CollectionEntry<'blog'>) => {

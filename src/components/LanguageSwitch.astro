@@ -1,17 +1,9 @@
 ---
-import { getLangFromUrl, getAlternatePath, type Languages } from '@/i18n/utils'
-import { languages, defaultLang } from '@/i18n/ui'
+import { getAlternatePath, type Languages } from '@/i18n/utils'
+import { languages } from '@/i18n/ui'
 
-const currentLang = getLangFromUrl(Astro.url)
+const currentLang = Astro.params.lang as Languages
 const currentPath = Astro.url.pathname
-
-// デバッグ情報（開発時用）
-console.log('Debug LanguageSwitch:', {
-	url: Astro.url.pathname,
-	currentLang,
-	currentPath,
-	defaultLang
-})
 
 // 対象言語を決定（より安全な方法）
 const targetLang: Languages = currentLang === 'ja' ? 'en' : 'ja'

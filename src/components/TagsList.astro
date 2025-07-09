@@ -1,9 +1,8 @@
 ---
 import { getTags } from '@/utils'
-import { getLangFromUrl } from '@/i18n/utils'
 
 const tags = await getTags()
-const lang = getLangFromUrl(Astro.url)
+const { lang } = Astro.params
 ---
 
 <div class='bg-gray-50 dark:bg-gray-800 rounded-lg p-4'>

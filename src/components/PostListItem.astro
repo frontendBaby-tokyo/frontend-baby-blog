@@ -1,6 +1,6 @@
 ---
 import FormattedDate from './FormattedDate.astro'
-import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import { useTranslations, type Languages } from '@/i18n/utils'
 
 const {
 	id,
@@ -9,8 +9,8 @@ const {
 	slug
 } = Astro.props
 
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const { lang } = Astro.params
+const t = useTranslations(lang as Languages)
 
 // readTimeから数値部分を抽出（例: "3 min read" → 3）
 const minutes = parseInt(readTime) || 3

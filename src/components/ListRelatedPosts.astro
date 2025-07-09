@@ -3,14 +3,13 @@ import type { CollectionEntry } from 'astro:content'
 
 import { cn } from '@/utils'
 import { Image } from 'astro:assets'
-import { getLangFromUrl } from '@/i18n/utils'
 
 type Props = {
 	posts: CollectionEntry<'blog'>[]
 }
 
 const { posts } = Astro.props
-const lang = getLangFromUrl(Astro.url)
+const { lang } = Astro.params
 ---
 
 <section class={cn(`flex flex-col md:flex-row sm:justify-between gap-8`)}>

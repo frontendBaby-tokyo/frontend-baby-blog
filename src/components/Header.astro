@@ -8,10 +8,11 @@ import LanguageSwitch from '@/components/LanguageSwitch'
 import TwitterIcon from './icons/TwitterIcon.astro'
 import GithubIcon from './icons/GithubIcon.astro'
 import { SOCIALNETWORKS } from '@/data/links'
-import { getLangFromUrl, useTranslations } from '@/i18n/utils'
+import { useTranslations } from '@/i18n/utils'
+import type { Languages } from '@/i18n/utils'
 
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const { lang } = Astro.params
+const t = useTranslations(lang as Languages)
 
 // アイコンマッピング
 const iconMap = {

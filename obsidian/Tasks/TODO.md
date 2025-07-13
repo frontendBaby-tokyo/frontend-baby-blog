@@ -13,3 +13,6 @@
 - [ ] 生成AIツールの導入（GiminiCLI、ClaudeCode、Cursor） ⏫
 - [ ] 記事ページのレイアウト調整
 - [ ] 関連記事取得のロジック見直し
+- [ ] MCPサーバー導入 ⏫
+-[ ] ESLintとPrettierからBiomeへの移行
+- [ ] 

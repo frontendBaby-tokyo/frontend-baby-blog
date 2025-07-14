@@ -13,7 +13,9 @@
 			"@/site-config": ["src/data/site.config.ts"],
 			"@/styles": ["src/styles/"],
 			"@/i18n/*": ["src/i18n/*"]
-		}
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	},
 	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]
 }

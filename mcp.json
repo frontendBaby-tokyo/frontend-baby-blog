@@ -1,0 +1,11 @@
+{
+	"mcpServers": {
+		"astro": {
+			"command": "node",
+			"args": ["node_modules/astro-mcp/dist/index.js"],
+			"env": {
+				"ASTRO_PROJECT_ROOT": "."
+			}
+		}
+	}
+}

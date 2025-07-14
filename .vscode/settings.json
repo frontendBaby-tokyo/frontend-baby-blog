@@ -1,0 +1,14 @@
+{
+	"mcp.servers": {
+		"astro-mcp": {
+			"command": "node",
+			"args": ["node_modules/astro-mcp/dist/index.js"],
+			"env": {
+				"NODE_ENV": "development",
+				"ASTRO_PROJECT_ROOT": "."
+			}
+		}
+	},
+	"github.copilot.chat.mcp.enabled": true,
+	"github.copilot.chat.mcp.servers": ["astro-mcp"]
+}

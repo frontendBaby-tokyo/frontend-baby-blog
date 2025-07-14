@@ -1,0 +1,37 @@
+---
+// MCPツールパネルを表示するためのAstroコンポーネント
+---
+
+<div
+	id='mcp-tools-container'
+	class='hidden fixed top-16 right-4 z-50 w-80 max-h-96 overflow-y-auto'
+>
+	<div id='mcp-tools-panel'></div>
+</div>
+
+<script>
+	// MCPツールパネルの表示/非表示を切り替える関数
+	function toggleMCPPanel() {
+		const container = document.getElementById('mcp-tools-container')
+		if (container) {
+			container.classList.toggle('hidden')
+		}
+	}
+
+	// グローバルに関数を公開
+	declare global {
+		interface Window {
+			toggleMCPPanel: () => void
+		}
+	}
+
+	window.toggleMCPPanel = toggleMCPPanel
+</script>
+
+<style>
+	/* MCPパネルのスタイル */
+	#mcp-tools-container {
+		backdrop-filter: blur(10px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+</style>

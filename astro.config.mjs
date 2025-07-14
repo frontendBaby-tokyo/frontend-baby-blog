@@ -6,43 +6,40 @@ import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/readTime.ts'
 import { siteConfig } from './src/data/site.config'
 
+import mcp from 'astro-mcp';
+
 // https://astro.build/config
 export default defineConfig({
-	site: siteConfig.site,
-	base: process.env.GITHUB_ACTIONS || process.env.NODE_ENV === 'production' ? '/frontend-baby-blog/' : '/',
-	output: 'static',
-	i18n: {
-		defaultLocale: 'ja',
-		locales: ['ja', 'en'],
-		routing: {
-			prefixDefaultLocale: true
-		}
-	},
-	markdown: {
-		remarkPlugins: [remarkReadingTime],
-		drafts: true,
-		shikiConfig: {
-			theme: 'material-theme-palenight',
-			wrap: true
-		}
-	},
-	integrations: [
-		mdx({
-			syntaxHighlight: 'shiki',
-			shikiConfig: {
-				experimentalThemes: {
-					light: 'vitesse-light',
-					dark: 'material-theme-palenight',
-				  },
-				wrap: true
-			},
-			drafts: true
-		}),
-		sitemap(),
-		tailwind(),
-		react({
-			include: ['**/react/*'],
-			experimentalReactChildren: true,
-		}),
-	]
+    site: siteConfig.site,
+    base: process.env.GITHUB_ACTIONS || process.env.NODE_ENV === 'production' ? '/frontend-baby-blog/' : '/',
+    output: 'static',
+    i18n: {
+        defaultLocale: 'ja',
+        locales: ['ja', 'en'],
+        routing: {
+            prefixDefaultLocale: true
+        }
+    },
+    markdown: {
+        remarkPlugins: [remarkReadingTime],
+        drafts: true,
+        shikiConfig: {
+            theme: 'material-theme-palenight',
+            wrap: true
+        }
+    },
+    integrations: [mdx({
+        syntaxHighlight: 'shiki',
+        shikiConfig: {
+            experimentalThemes: {
+                light: 'vitesse-light',
+                dark: 'material-theme-palenight',
+              },
+            wrap: true
+        },
+        drafts: true
+		}), sitemap(), tailwind(), react({
+        include: ['**/react/*'],
+        experimentalReactChildren: true,
+		}), mcp()]
 })

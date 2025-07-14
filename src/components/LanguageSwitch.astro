@@ -2,72 +2,127 @@
 import { getAlternatePath, type Languages } from '@/i18n/utils'
 import { languages } from '@/i18n/ui'
 
-const currentLang = Astro.params.lang as Languages
+// サーバーサイドでの基本計算（SSG最適化）
+const currentLang = (Astro.params.lang as Languages) || 'ja' // デフォルト値設定
 const currentPath = Astro.url.pathname
 
 // 対象言語を決定（より安全な方法）
 const targetLang: Languages = currentLang === 'ja' ? 'en' : 'ja'
 const alternatePath = getAlternatePath(currentPath, currentLang, targetLang)
 
-console.log('Target:', { targetLang, alternatePath })
+// サーバーサイドで表示用データを準備
+const targetLanguageName = languages[targetLang]
+const targetFlag = targetLang === 'ja' ? '🇯🇵' : '🇺🇸'
 ---
 
-<div class='language-switch' data-current-lang={currentLang}>
+<div class='language-switch' data-current-lang={currentLang} transition:persist='language-switch'>
 	<a
 		href={alternatePath}
 		class='flex items-center gap-1 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800'
-		aria-label={`Switch to ${languages[targetLang]}`}
-		title={`Switch to ${languages[targetLang]}`}
+		aria-label={`Switch to ${targetLanguageName}`}
+		title={`Switch to ${targetLanguageName}`}
+		data-target-lang={targetLang}
 	>
-		<span class='flag text-lg'>{targetLang === 'ja' ? '🇯🇵' : '🇺🇸'}</span>
-		<span class='lang-text font-medium'>{languages[targetLang]}</span>
+		<span class='flag text-lg'>{targetFlag}</span>
+		<span class='lang-text font-medium'>{targetLanguageName}</span>
 	</a>
 </div>
 
 <script>
-	// ページ読み込み時とナビゲーション時に言語スイッチを更新
+	// SSG最適化: より効率的な言語スイッチ更新
+	let isUpdating = false // デバウンス用フラグ
+
 	function updateLanguageSwitch() {
-		const languageMap: { [key: string]: string } = { '/ja/': '/en/', '/en/': '/ja/' }
-		const currentPath = window.location.pathname
-		const link = document.querySelector('.language-switch a')
-		const languageSwitch = document.querySelector('.language-switch')
+		// デバウンス処理
+		if (isUpdating) return
+		isUpdating = true
 
-		if (link && languageSwitch) {
-			// 現在の言語を検出
-			const currentLang = currentPath.includes('/ja/') ? 'ja' : 'en'
-			const targetLang = currentLang === 'ja' ? 'en' : 'ja'
+		// 次のフレームで実行（パフォーマンス最適化）
+		requestAnimationFrame(() => {
+			try {
+				const currentPath = window.location.pathname
+				const link = document.querySelector('.language-switch a') as HTMLAnchorElement
+				const languageSwitch = document.querySelector('.language-switch') as HTMLElement
 
-			// href属性を更新
-			const newPath = currentPath.replace(/\/(ja|en)\//, (match) => languageMap[match])
-			link.setAttribute('href', newPath)
+				if (!link || !languageSwitch) {
+					console.warn('LanguageSwitch: 必要な要素が見つかりません')
+					return
+				}
 
-			// data-current-lang属性を更新
-			languageSwitch.setAttribute('data-current-lang', currentLang)
+				// より正確な言語検出
+				const currentLang = detectCurrentLanguage(currentPath)
+				const targetLang = currentLang === 'ja' ? 'en' : 'ja'
 
-			// フラグとテキストを更新
-			const flagElement = link.querySelector('.flag')
-			const textElement = link.querySelector('.lang-text')
+				// パス変換（より堅牢な実装）
+				const newPath = generateAlternatePath(currentPath, currentLang, targetLang)
 
-			if (flagElement && textElement) {
-				flagElement.textContent = targetLang === 'ja' ? '🇯🇵' : '🇺🇸'
-				textElement.textContent = targetLang === 'ja' ? '日本語' : 'English'
-
-				// aria-labelとtitle属性も更新
-				const targetLanguageName = targetLang === 'ja' ? '日本語' : 'English'
-				link.setAttribute('aria-label', `Switch to ${targetLanguageName}`)
-				link.setAttribute('title', `Switch to ${targetLanguageName}`)
+				// DOM更新（バッチ処理で効率化）
+				updateDOMElements(link, languageSwitch, currentLang, targetLang, newPath)
+			} catch (error) {
+				console.error('LanguageSwitch更新エラー:', error)
+			} finally {
+				isUpdating = false
 			}
-		}
+		})
 	}
 
-	// 初回読み込み時
+	// 言語検出ロジック（エッジケース対応）
+	function detectCurrentLanguage(path: string): 'ja' | 'en' {
+		if (path.includes('/ja/') || path.endsWith('/ja')) return 'ja'
+		if (path.includes('/en/') || path.endsWith('/en')) return 'en'
+
+		// デフォルトは日本語（SSGの設定に合わせる）
+		return 'ja'
+	}
+
+	// パス生成ロジック（より堅牢）
+	function generateAlternatePath(currentPath: string, fromLang: string, toLang: string): string {
+		// ベースURL考慮
+		const basePath = currentPath.replace(/\/(ja|en)(\/|$)/, `/${toLang}/`)
+
+		// 末尾スラッシュの正規化
+		if (basePath.endsWith('/') && basePath !== '/') {
+			return basePath
+		}
+
+		return basePath.endsWith('/') ? basePath : basePath + '/'
+	}
+
+	// DOM更新処理（バッチ処理で効率化）
+	function updateDOMElements(
+		link: HTMLAnchorElement,
+		container: HTMLElement,
+		currentLang: string,
+		targetLang: string,
+		newPath: string
+	) {
+		const targetLanguageName = targetLang === 'ja' ? '日本語' : 'English'
+		const targetFlag = targetLang === 'ja' ? '🇯🇵' : '🇺🇸'
+
+		// バッチDOM更新
+		link.href = newPath
+		link.setAttribute('aria-label', `Switch to ${targetLanguageName}`)
+		link.setAttribute('title', `Switch to ${targetLanguageName}`)
+		link.setAttribute('data-target-lang', targetLang)
+		container.setAttribute('data-current-lang', currentLang)
+
+		// 子要素更新
+		const flagElement = link.querySelector('.flag')
+		const textElement = link.querySelector('.lang-text')
+
+		if (flagElement) flagElement.textContent = targetFlag
+		if (textElement) textElement.textContent = targetLanguageName
+	}
+
+	// イベントリスナー（SSG最適化）
 	document.addEventListener('DOMContentLoaded', updateLanguageSwitch)
 
-	// Astroのページ遷移時（View Transitionsが有効な場合）
+	// Astro View Transitions対応
 	document.addEventListener('astro:page-load', updateLanguageSwitch)
-
-	// 通常のページ遷移時（fallback）
 	document.addEventListener('astro:after-swap', updateLanguageSwitch)
+
+	// 履歴変更対応（ブラウザの戻る/進む）
+	window.addEventListener('popstate', updateLanguageSwitch)
 </script>
 
 <style>

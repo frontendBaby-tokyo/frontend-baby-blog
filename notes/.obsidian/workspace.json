@@ -1,0 +1,183 @@
+{
+	"main": {
+		"id": "5ecaf4d8ee587af7",
+		"type": "split",
+		"children": [
+			{
+				"id": "39ab146647b862aa",
+				"type": "tabs",
+				"children": [
+					{
+						"id": "26b891abc504eb84",
+						"type": "leaf",
+						"state": {
+							"type": "markdown",
+							"state": {
+								"file": "Tasks/ALL_TASKS.md",
+								"mode": "source",
+								"source": false
+							},
+							"icon": "lucide-file",
+							"title": "ALL_TASKS"
+						}
+					}
+				]
+			}
+		],
+		"direction": "vertical"
+	},
+	"left": {
+		"id": "0852da549297f165",
+		"type": "split",
+		"children": [
+			{
+				"id": "7e516fdee587c3fe",
+				"type": "tabs",
+				"children": [
+					{
+						"id": "285251911d51c46c",
+						"type": "leaf",
+						"state": {
+							"type": "file-explorer",
+							"state": {
+								"sortOrder": "alphabetical",
+								"autoReveal": false
+							},
+							"icon": "lucide-folder-closed",
+							"title": "Files"
+						}
+					},
+					{
+						"id": "a9ae04da9e18f023",
+						"type": "leaf",
+						"state": {
+							"type": "search",
+							"state": {
+								"query": "",
+								"matchingCase": false,
+								"explainSearch": false,
+								"collapseAll": false,
+								"extraContext": false,
+								"sortOrder": "alphabetical"
+							},
+							"icon": "lucide-search",
+							"title": "検索"
+						}
+					},
+					{
+						"id": "bfff6eb1c7ba272e",
+						"type": "leaf",
+						"state": {
+							"type": "bookmarks",
+							"state": {},
+							"icon": "lucide-bookmark",
+							"title": "ブックマーク"
+						}
+					}
+				]
+			}
+		],
+		"direction": "horizontal",
+		"width": 300
+	},
+	"right": {
+		"id": "d6e4ee906139476f",
+		"type": "split",
+		"children": [
+			{
+				"id": "b2269ebbd644aaa1",
+				"type": "tabs",
+				"children": [
+					{
+						"id": "ad5ee8adc50a468c",
+						"type": "leaf",
+						"state": {
+							"type": "backlink",
+							"state": {
+								"file": "Tasks/ALL_TASKS.md",
+								"collapseAll": false,
+								"extraContext": false,
+								"sortOrder": "alphabetical",
+								"showSearch": false,
+								"searchQuery": "",
+								"backlinkCollapsed": false,
+								"unlinkedCollapsed": true
+							},
+							"icon": "links-coming-in",
+							"title": "ALL_TASKSへのバックリンク"
+						}
+					},
+					{
+						"id": "8075292e2f3e5604",
+						"type": "leaf",
+						"state": {
+							"type": "outgoing-link",
+							"state": {
+								"file": "Tasks/ALL_TASKS.md",
+								"linksCollapsed": false,
+								"unlinkedCollapsed": true
+							},
+							"icon": "links-going-out",
+							"title": "ALL_TASKSからのアウトゴーイングリンク"
+						}
+					},
+					{
+						"id": "f3eeb41bfefc2953",
+						"type": "leaf",
+						"state": {
+							"type": "tag",
+							"state": {
+								"sortOrder": "frequency",
+								"useHierarchy": true,
+								"showSearch": false,
+								"searchQuery": ""
+							},
+							"icon": "lucide-tags",
+							"title": "タグ"
+						}
+					},
+					{
+						"id": "1119c88af06c1c92",
+						"type": "leaf",
+						"state": {
+							"type": "outline",
+							"state": {
+								"file": "Tasks/ALL_TASKS.md",
+								"followCursor": false,
+								"showSearch": false,
+								"searchQuery": ""
+							},
+							"icon": "lucide-list",
+							"title": "ALL_TASKSのアウトライン"
+						}
+					},
+					{
+						"id": "08df944b31335c11",
+						"type": "leaf",
+						"state": {
+							"type": "calendar",
+							"state": {},
+							"icon": "lucide-file",
+							"title": "Plugin no longer active"
+						}
+					}
+				]
+			}
+		],
+		"direction": "horizontal",
+		"width": 300,
+		"collapsed": true
+	},
+	"left-ribbon": {
+		"hiddenItems": {
+			"switcher:Open quick switcher": false,
+			"graph:Open graph view": false,
+			"canvas:Create new canvas": false,
+			"daily-notes:Open today's daily note": false,
+			"templates:Insert template": false,
+			"command-palette:Open command palette": false
+		}
+	},
+	"active": "26b891abc504eb84",
+	"lastOpenFiles": ["Tasks/TODO.md", "README.md", "Tasks/ALL_TASKS.md"]
+}

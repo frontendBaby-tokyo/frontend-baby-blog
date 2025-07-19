@@ -8,13 +8,10 @@ export const defaultLang = 'ja' as const
 export const ui = {
 	ja: {
 		'nav.home': 'ホーム',
-		'nav.categories': 'カテゴリー',
 		'nav.tags': 'タグ',
 		'tags.allTags': 'すべてのタグ',
 		'tags.taggedWith': 'タグの記事',
 		'nav.about': 'About',
-		'categories.all': 'すべて',
-		'categories.allCategories': 'すべてのカテゴリ',
 		'posts.latest': '最新記事',
 		'posts.recommended': 'おすすめ記事',
 		'posts.readMore': '続きを読む',
@@ -32,13 +29,10 @@ export const ui = {
 	},
 	en: {
 		'nav.home': 'Home',
-		'nav.categories': 'Categories',
 		'nav.tags': 'Tags',
 		'tags.allTags': 'All Tags',
 		'tags.taggedWith': 'Posts tagged with',
 		'nav.about': 'About',
-		'categories.all': 'All',
-		'categories.allCategories': 'All Categories',
 		'posts.latest': 'Latest Posts',
 		'posts.recommended': 'Recommended Posts',
 		'posts.readMore': 'Read More',

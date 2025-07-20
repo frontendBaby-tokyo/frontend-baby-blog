@@ -9,6 +9,10 @@ export const ui = {
 	ja: {
 		'nav.home': 'ホーム',
 		'nav.tags': 'タグ',
+		'prof.aboutme': `都内で働くフロントエンドエンジニアです。
+かつてはWeb3.0関連の開発にも携わっていました。
+フロントエンド技術を中心に、日々の学びや実務で得た気づきを発信しています。
+このブログは、静的サイトジェネレーター「Astro」で構築しています。`,
 		'tags.allTags': 'すべてのタグ',
 		'tags.taggedWith': 'タグの記事',
 		'nav.about': 'About',
@@ -30,6 +34,8 @@ export const ui = {
 	en: {
 		'nav.home': 'Home',
 		'nav.tags': 'Tags',
+		'prof.aboutme': `I'm a frontend engineer based in Tokyo.
+		I have previous experience in Web3.0 development. On this blog, I share my daily learnings and insights from my work, focusing on frontend technologies. This blog is built with Astro, a static site generator.`,
 		'tags.allTags': 'All Tags',
 		'tags.taggedWith': 'Posts tagged with',
 		'nav.about': 'About',

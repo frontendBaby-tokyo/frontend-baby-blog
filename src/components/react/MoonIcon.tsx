@@ -3,9 +3,7 @@ import type { SVGProps } from 'react'
 export const MoonIcon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
-		className='icon icon-tabler icon-tabler-moon'
-		width='24'
-		height='24'
+		className='icon icon-tabler icon-tabler-moon w-4 md:w-6'
 		viewBox='0 0 24 24'
 		strokeWidth='1.25'
 		stroke='currentColor'

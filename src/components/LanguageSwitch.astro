@@ -12,7 +12,7 @@ const alternatePath = getAlternatePath(currentPath, currentLang, targetLang)
 console.log('Target:', { targetLang, alternatePath })
 ---
 
-<div class='language-switch' data-current-lang={currentLang}>
+<div class='language-switch flex-shrink-0' data-current-lang={currentLang}>
 	<a
 		href={alternatePath}
 		class='flex items-center gap-1 text-sm px-2 py-1 rounded-md transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-800'

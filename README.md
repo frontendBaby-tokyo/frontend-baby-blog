@@ -1,4 +1,4 @@
-# frontendBaby-tokyo Tech Blog
+# frontendBaby Tech Blog
 
 A tech blog focused on frontend technologies, developed by frontendBaby-tokyo using Astro.
 

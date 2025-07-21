@@ -9,6 +9,7 @@ import GithubIcon from './icons/GithubIcon.astro'
 import { SOCIALNETWORKS } from '@/data/links'
 import { useTranslations } from '@/i18n/utils'
 import type { Languages } from '@/i18n/utils'
+import { siteConfig } from '@/site-config'
 
 const { lang } = Astro.params
 const t = useTranslations(lang as Languages)
@@ -24,9 +25,11 @@ const iconMap = {
 	class='relative flex flex-col-reverse items-center justify-center h-auto font-semibold md:flex-row md:h-12'
 >
 	<a
-		class='text-lg p-2 rounded-md transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-800 w-full text-center md:w-auto md:mr-auto mt-8 md:mt-0'
-		href={`${import.meta.env.BASE_URL}${lang}/`}>{t('nav.home')}</a
+		class='text-lg p-2 pl-0 rounded-md transition-colors duration-200 w-full text-center md:w-auto md:mr-auto mt-8 md:mt-0'
+		href={`${import.meta.env.BASE_URL}${lang}/`}
 	>
+		{siteConfig.title}
+	</a>
 
 	<div class='flex items-center justify-end w-full md:w-auto'>
 		<div id='astro-header-drawer' class='flex items-center'>

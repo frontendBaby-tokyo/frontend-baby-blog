@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import TitlePage from '@/components/TitlePage'
 import Sidebar from '@/components/Sidebar'
 import { getTags } from '@/utils'
 import { useTranslations } from '@/i18n/utils'
@@ -16,8 +15,6 @@ const t = useTranslations(lang as Languages)
 ---
 
 <BaseLayout title={t('nav.tags')}>
-	<TitlePage title={t('nav.tags')} />
-
 	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
 	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
 		<!-- メインコンテンツ -->

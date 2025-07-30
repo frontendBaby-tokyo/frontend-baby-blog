@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tasks/ALL_TASKS.md",
+                "file": "Tasks/TODO 2025.07.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ALL_TASKS"
+              "title": "TODO 2025.07"
             }
           }
         ]
@@ -180,8 +180,8 @@
   },
   "active": "26b891abc504eb84",
   "lastOpenFiles": [
-    "Tasks/TODO.md",
-    "README.md",
-    "Tasks/ALL_TASKS.md"
+    "Tasks/ALL_TASKS.md",
+    "Tasks/TODO 2025.07.md",
+    "README.md"
   ]
 }

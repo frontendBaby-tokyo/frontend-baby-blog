@@ -29,7 +29,15 @@ export const ui = {
 		'date.published': '公開日',
 		'pagination.prev': '前のページ',
 		'pagination.next': '次のページ',
-		'related.posts': '関連記事'
+		'related.posts': '関連記事',
+		'tags.tech.vue': 'Vue',
+		'tags.tech.vue.slug': 'vue',
+		'tags.character.ponkichi': 'ポン吉',
+		'tags.character.ponkichi.slug': 'ponkichi',
+		'tags.series.ponkichi-to-vue': 'ポン吉とVue',
+		'tags.series.ponkichi-to-vue.slug': 'ponkichi-and-vue',
+		'tags.genre.tech-light-novel': 'テック系ラノベ',
+		'tags.genre.tech-light-novel.slug': 'tech-light-novel'
 	},
 	en: {
 		'nav.home': 'Home',
@@ -52,6 +60,14 @@ export const ui = {
 		'date.published': 'Published',
 		'pagination.prev': 'Previous',
 		'pagination.next': 'Next',
-		'related.posts': 'Related Posts'
+		'related.posts': 'Related Posts',
+		'tags.tech.vue': 'Vue',
+		'tags.tech.vue.slug': 'vue',
+		'tags.character.ponkichi': 'Ponkichi',
+		'tags.character.ponkichi.slug': 'ponkichi',
+		'tags.series.ponkichi-to-vue': 'Ponkichi and Vue',
+		'tags.series.ponkichi-to-vue.slug': 'ponkichi-and-vue',
+		'tags.genre.tech-light-novel': 'Tech Light Novel',
+		'tags.genre.tech-light-novel.slug': 'tech-light-novel'
 	}
 } as const

@@ -4,10 +4,10 @@ description: 連載「どうしてもVue.jsが分からないので森の博士�
 pubDate: 2025-07-30T15:00:00.000Z
 recommended: true
 tags:
-  - Vue
-  - ポン吉
-  - ポン吉とVue
-  - テック系ラノベ
+  - tags.tech.vue
+  - tags.character.ponkichi
+  - tags.series.ponkichi-to-vue
+  - tags.genre.tech-light-novel
 title: 第一話 「不思議な研究所での出会い」 
 ---
 

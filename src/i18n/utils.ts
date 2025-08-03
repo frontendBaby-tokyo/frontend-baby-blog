@@ -64,6 +64,16 @@ export function getPathWithoutLang(path: string): string {
 	return path.replace(/^\/(ja|en)/, '') || '/'
 }
 
+export function getTagKeyFromSlug(lang: Languages, slug: string): string | undefined {
+	const langUI = ui[lang]
+	for (const key in langUI) {
+		if (key.endsWith('.slug') && langUI[key as UIKeys] === slug) {
+			return key.replace('.slug', '')
+		}
+	}
+	return undefined
+}
+
 export function isCurrentLang(path: string, lang: Languages): boolean {
 	return path.startsWith(`/${lang}/`) || path === `/${lang}`
 }

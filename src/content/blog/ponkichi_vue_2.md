@@ -4,10 +4,10 @@ description: 連載「どうしてもVue.jsが分からないので森の博士�
 pubDate: 2025-08-03T00:00:00.000Z
 recommended: false
 tags:
-  - Vue
-  - ポン吉
-  - ポン吉とVue
-  - テック系ラノベ
+  - tags.tech.vue
+  - tags.character.ponkichi
+  - tags.series.ponkichi-to-vue
+  - tags.genre.tech-light-novel
 title: 第2話 「初めてのcreateApp体験とh関数の謎」
 ---
 

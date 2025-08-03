@@ -4,8 +4,9 @@ import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import { ToggleTheme } from './react/ToggleTheme'
 import LanguageSwitch from '@/components/LanguageSwitch'
-import TwitterIcon from './icons/TwitterIcon.astro'
-import GithubIcon from './icons/GithubIcon.astro'
+import TwitterIcon from '@/components/icons/TwitterIcon'
+import GithubIcon from '@/components/icons/GithubIcon'
+import QiitaIcon from '@/components/icons/QiitaIcon'
 import { SOCIALNETWORKS } from '@/data/links'
 import { useTranslations } from '@/i18n/utils'
 import type { Languages } from '@/i18n/utils'
@@ -17,7 +18,8 @@ const t = useTranslations(lang as Languages)
 // アイコンマッピング
 const iconMap = {
 	TwitterIcon,
-	GithubIcon
+	GithubIcon,
+	QiitaIcon
 }
 ---
 

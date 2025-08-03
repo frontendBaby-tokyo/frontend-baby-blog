@@ -10,5 +10,11 @@ export const SOCIALNETWORKS = [
 		name: 'X',
 		url: 'https://x.com/FEbabyTokyo',
 		icon: 'TwitterIcon'
+	},
+
+	{
+		name: 'Qiita',
+		url: 'https://qiita.com/fontendBaby',
+		icon: 'QiitaIcon'
 	}
 ] as const

@@ -2,36 +2,50 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPostsSimple from '@/components/ListPostsSimple'
 import Sidebar from '@/components/Sidebar'
-import { getTags, getPostByTag } from '@/utils'
-import { useTranslations } from '@/i18n/utils'
+import { getPostByTag, getTags } from '@/utils'
+import { useTranslations, getTagKeyFromSlug } from '@/i18n/utils'
+import { ui } from '@/i18n/ui'
 import type { Languages } from '@/i18n/utils'
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
 	const tags = await getTags()
 	const paths = []
 
 	for (const tag of tags) {
-		paths.push(
-			{ params: { lang: 'ja', tag: tag }, props: { tag, lang: 'ja' } },
-			{ params: { lang: 'en', tag: tag }, props: { tag, lang: 'en' } }
-		)
+		const jaSlug = ui.ja[`${tag}.slug` as any]
+		const enSlug = ui.en[`${tag}.slug` as any]
+
+		if (jaSlug) {
+			paths.push({ params: { lang: 'ja', tag: jaSlug } })
+		}
+		if (enSlug) {
+			paths.push({ params: { lang: 'en', tag: enSlug } })
+		}
 	}
 
 	return paths
 }
 
-const { tag, lang } = Astro.props
-const posts = await getPostByTag(tag as string)
+const { lang, tag } = Astro.params
 const t = useTranslations(lang as Languages)
+
+// スラッグからタグキーを逆引き
+const tagKey = getTagKeyFromSlug(lang as Languages, tag as string) || ''
+const posts = await getPostByTag(tagKey)
+const translatedTag = t(tagKey as any)
 ---
 
-<BaseLayout title={tag as string}>
+<BaseLayout title={`${t('tags.taggedWith')} ${translatedTag}`}>
 	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
 	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
 		<!-- メインコンテンツ -->
 		<main>
 			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
-				{lang === 'ja' ? `「${tag}」${t('tags.taggedWith')}` : `${t('tags.taggedWith')} "#${tag}"`}
+				{
+					lang === 'ja'
+						? `「${translatedTag}」${t('tags.taggedWith')}`
+						: `${t('tags.taggedWith')} "#${translatedTag}"`
+				}
 			</h2>
 			<ListPostsSimple posts={posts} />
 		</main>

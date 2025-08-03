@@ -14,6 +14,8 @@ const t = useTranslations(lang as Languages)
 
 // readTimeから数値部分を抽出（例: "3 min read" → 3）
 const minutes = parseInt(readTime) || 3
+
+const fixedDescription = description.replace(/\\n/g, '\n')
 ---
 
 <article
@@ -41,8 +43,11 @@ const minutes = parseInt(readTime) || 3
 			}
 		</div>
 
-		<p class='text-gray-700 dark:text-gray-300 line-clamp-3 leading-relaxed'>
-			{description}
+		<p
+			class='text-gray-700 dark:text-gray-300 line-clamp-3 leading-relaxed'
+			style='white-space: pre-line;'
+		>
+			{fixedDescription}
 		</p>
 	</a>
 </article>

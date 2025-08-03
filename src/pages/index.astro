@@ -14,8 +14,7 @@ const supportedLangs = ['ja', 'en']
 		<title>Redirecting... - {siteConfig.title}</title>
 		<meta name='description' content='Redirecting to the appropriate language version' />
 
-		<!-- SEO: 検索エンジンにインデックスされないようにする -->
-		<meta name='robots' content='noindex, nofollow' />
+		<meta name='robots' content='index, follow' />
 
 		<!-- デフォルト言語へのcanonical -->
 		<link rel='canonical' href={`${siteConfig.site}/${defaultLang}`} />

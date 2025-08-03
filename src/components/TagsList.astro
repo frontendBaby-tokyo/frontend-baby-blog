@@ -1,24 +1,26 @@
 ---
 import { getTags } from '@/utils'
+import { useTranslations } from '@/i18n/utils'
 
 const tags = await getTags()
 const { lang } = Astro.params
+const t = useTranslations(lang as any)
 ---
 
 <div
 	class='bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-md transition-shadow duration-300'
 >
-	<h3 class='text-lg font-semibold mb-4 text-gray-900 dark:text-white'>Tags</h3>
+	<h3 class='text-lg font-semibold mb-4 text-gray-900 dark:text-white'>{t('nav.tags')}</h3>
 	<div class='flex flex-wrap gap-2'>
 		{
 			tags.map((tag) => (
 				<a
-					href={`${import.meta.env.BASE_URL}${lang}/tags/${tag}`}
+					href={`${import.meta.env.BASE_URL}${lang}/tags/${t(`${tag}.slug` as any)}`}
 					class='inline-block bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 
 					       text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full 
-					       transition-colors duration-200 capitalize'
+					       transition-colors duration-200'
 				>
-					{tag}
+					{t(tag as any)}
 				</a>
 			))
 		}

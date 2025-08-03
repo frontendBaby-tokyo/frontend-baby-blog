@@ -22,7 +22,7 @@ export const getTags = async () => {
 		.forEach((post) => {
 			post.data.tags.forEach((tag) => {
 				if (tag != '') {
-					tags.add(tag.toLowerCase())
+					tags.add(tag)
 				}
 			})
 		})
@@ -32,10 +32,9 @@ export const getTags = async () => {
 
 export const getPostByTag = async (tag: string) => {
 	const posts = await getPosts()
-	const lowercaseTag = tag.toLowerCase()
 	return posts
 		.filter((post) => !post.data.draft)
 		.filter((post) => {
-			return post.data.tags.some((postTag) => postTag.toLowerCase() === lowercaseTag)
+			return post.data.tags.some((postTag) => postTag === tag)
 		})
 }

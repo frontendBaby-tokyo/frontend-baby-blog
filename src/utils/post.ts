@@ -1,7 +1,8 @@
 import { getCollection } from 'astro:content'
+import type { Languages } from '@/i18n/utils'
 
-export const getPosts = async (max?: number) => {
-	return (await getCollection('blog'))
+export const getPosts = async (lang: Languages, max?: number) => {
+	return (await getCollection('blog', ({ id }) => id.startsWith(`${lang}/`)))
 		.filter((post) => !post.data.draft)
 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 		.slice(0, max)
@@ -30,8 +31,8 @@ export const getTags = async () => {
 	return Array.from(tags)
 }
 
-export const getPostByTag = async (tag: string) => {
-	const posts = await getPosts()
+export const getPostByTag = async (lang: Languages, tag: string) => {
+	const posts = await getPosts(lang)
 	return posts
 		.filter((post) => !post.data.draft)
 		.filter((post) => {

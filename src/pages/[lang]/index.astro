@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params
 const MAX_POSTS = 5 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS)
+const posts = await getPosts(lang as Languages, MAX_POSTS)
 const t = useTranslations(lang as Languages)
 ---
 

@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import { cn } from '@/utils'
+import { cn, getPostSlugWithoutLang } from '@/utils'
 import { Image } from 'astro:assets'
 
 type Props = {
@@ -31,7 +31,7 @@ const { lang } = Astro.params
 						<header class='flex justify-center items-center'>
 							<a
 								class='font-medium  hover:underline'
-								href={`${import.meta.env.BASE_URL}${lang}/post/${post.slug}/`}
+								href={`${import.meta.env.BASE_URL}${lang}/post/${getPostSlugWithoutLang(post)}/`}
 							>
 								{post.data.title}
 							</a>

@@ -7,7 +7,7 @@ tags:
   - tags.character.ponkichi
   - tags.series.ponkichi-to-vue
   - tags.genre.tech-light-novel
-title: 第5話 「ポン吉のフロントエンド探検記 〜博士と解き明かすVueと型の謎〜」
+title: 第5話 「TypeScriptって何だろう？」
 ---
 
 ## どうしてもVue.jsが分からないので森の博士の研究所に押しかけてみたら、人生が激変した子タヌキの話
@@ -27,7 +27,7 @@ title: 第5話 「ポン吉のフロントエンド探検記 〜博士と解き�
 
 ---
 
-### 第5話🦝「ポン吉のフロントエンド探検記 〜博士と解き明かすVueと型の謎〜」
+### 第5話🦝「TypeScriptって何だろう？」
 
 数日後、ポン吉は少し困った顔で研究所にやってきた。
 

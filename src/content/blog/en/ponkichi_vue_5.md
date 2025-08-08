@@ -7,7 +7,7 @@ tags:
   - tags.character.ponkichi
   - tags.series.ponkichi-to-vue
   - tags.genre.tech-light-novel
-title: "Episode 5: Ponkichi's Frontend Adventure - Unraveling the Mysteries of Vue and Types with the Doctor"
+title: "Episode 5: What is TypeScript?"
 ---
 
 ## The Tale of a Young Raccoon Dog Whose Life Was Drastically Changed When He Barged into the Forest Doctor's Laboratory Because He Just Couldn't Understand Vue.js
@@ -27,7 +27,7 @@ Please enjoy this as a supplementary learning tool and with a relaxed mindset.
 
 ---
 
-### Episode 5 🦝 "Ponkichi's Frontend Adventure - Unraveling the Mysteries of Vue and Types with the Doctor"
+### Episode 5 🦝 "What is TypeScript?"
 
 A few days later, Ponkichi came to the laboratory with a slightly troubled look on his face.
 

@@ -11,7 +11,7 @@ tags:
 title: "Episode 1: The Encounter at the Mysterious Laboratory"
 ---
 
-# Ponkichi’s Vue.js Adventure: The Day His Life Changed at the Forest Doctor’s Lab
+## Ponkichi’s Vue.js Adventure: The Day His Life Changed at the Forest Doctor’s Lab
 
 ### Note
 

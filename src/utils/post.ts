@@ -1,6 +1,12 @@
 import { getCollection } from 'astro:content'
 import type { Languages } from '@/i18n/utils'
 
+// post.slugから言語プレフィックスを除去するヘルパー関数
+export const getPostSlugWithoutLang = (post: any) => {
+	const slugParts = post.slug.split('/')
+	return slugParts.slice(1).join('/') || slugParts[0]
+}
+
 export const getPosts = async (lang: Languages, max?: number) => {
 	return (await getCollection('blog', ({ id }) => id.startsWith(`${lang}/`)))
 		.filter((post) => !post.data.draft)

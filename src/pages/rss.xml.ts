@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { siteConfig } from '@/site-config'
+import { getPostSlugWithoutLang } from '@/utils'
 
 export async function GET(context: any) {
 	const posts = await getCollection('blog')
@@ -10,7 +11,7 @@ export async function GET(context: any) {
 		site: context.site,
 		items: posts.map((post) => ({
 			...post.data,
-			link: `post/${post.slug}/`
+			link: `post/${getPostSlugWithoutLang(post)}/`
 		}))
 	})
 }

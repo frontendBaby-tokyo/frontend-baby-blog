@@ -1,10 +1,11 @@
 ---
 import { getRecommendedPosts, getPostSlugWithoutLang } from '@/utils'
 import FormattedDate from './FormattedDate.astro'
+import type { Languages } from '@/i18n/utils'
 
-// Recommended Postsとして推薦記事を取得
-const posts = await getRecommendedPosts(3)
 const { lang } = Astro.params
+// Recommended Postsとして推薦記事を取得
+const posts = await getRecommendedPosts(lang as Languages, 3)
 ---
 
 <div

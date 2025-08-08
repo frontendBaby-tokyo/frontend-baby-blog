@@ -1,6 +1,6 @@
 ---
 description: "Ponkichi peeks into Vue's type definition files and learns about the strict rules that keep his code safe."
-pubDate: 2025-08-03T06:00:00.000Z
+pubDate: 2025-08-05T06:00:00.000Z
 recommended: false
 tags:
   - tags.tech.vue

@@ -1,5 +1,4 @@
 ---
-heroImage: /src/assets/images/placeholder-social.jpg
 description: "Ponkichi experiences his first hands-on createApp coding and discovers the mystery behind the h function!"
 pubDate: 2025-08-03T00:00:00.000Z
 recommended: false

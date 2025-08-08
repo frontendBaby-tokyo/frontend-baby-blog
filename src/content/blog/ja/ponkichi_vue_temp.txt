@@ -1,5 +1,4 @@
 ---
-heroImage: /src/assets/images/placeholder-social.jpg
 description: フロントエンドエンジニアを夢見る子タヌキ・ポン吉が、森の奥の研究所で天才博士と出会い、Vue.jsの不思議な世界に飛び込む！
 pubDate: 2025-08-03T00:00:00.000Z
 recommended: false

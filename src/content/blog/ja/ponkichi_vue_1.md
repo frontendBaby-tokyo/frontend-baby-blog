@@ -1,5 +1,4 @@
 ---
-heroImage: /src/assets/images/placeholder-social.jpg
 description: 連載「どうしてもVue.jsが分からないので森の博士の研究所に押しかけてみたら、人生が激変した子タヌキの話」\nフロントエンドエンジニアを夢見る子タヌキ・ポン吉が、森の奥の研究所で天才博士と出会い、Vue.jsの不思議な世界に飛び込む！
 pubDate: 2025-07-30T15:00:00.000Z
 recommended: true

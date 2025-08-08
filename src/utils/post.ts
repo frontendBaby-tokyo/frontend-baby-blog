@@ -14,8 +14,8 @@ export const getPosts = async (lang: Languages, max?: number) => {
 		.slice(0, max)
 }
 
-export const getRecommendedPosts = async (max?: number) => {
-	return (await getCollection('blog'))
+export const getRecommendedPosts = async (lang: Languages, max?: number) => {
+	return (await getCollection('blog', ({ id }) => id.startsWith(`${lang}/`)))
 		.filter((post) => !post.data.draft && post.data.recommended)
 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 		.slice(0, max)

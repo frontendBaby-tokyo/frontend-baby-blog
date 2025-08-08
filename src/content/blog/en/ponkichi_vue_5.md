@@ -120,5 +120,19 @@ And so, Ponkichi obtained a new magic map to navigate the world of programming m
 
 We'll take a peek at the true identity of the `createApp` function we always use, through its TypeScript type definition file! What discoveries will Ponkichi make?
 
+###  👨‍🏫 Doctor's Note
+
+It seems you've realized the wonderful safety that TypeScript's 'types' provide, Ponkichi. While the freedom of JavaScript is appealing, I think you now understand how much these rules can help us when building something large.
+
+But, interestingly enough, the world of frontend has many different philosophies, and not every tool uses the same kind of magic.
+
+For example, there's another powerful tool I've been watching called **Svelte**. Svelte has a strong identity as a "compiler" and values being able to write code that feels as close to plain HTML and JavaScript as possible. Therefore, unlike Vue, which warmly welcomes TypeScript by writing `lang="ts"`, Svelte doesn't necessarily force TypeScript from the very beginning.
+
+This isn't a matter of which one is superior.
+
+If Vue's philosophy is, **"Let's wear the sturdy armor of 'types' from the start to build large applications safely,"** then Svelte's philosophy is, **"Let's start light with plain JavaScript, and it's expected that you can put on the TypeScript armor later if the project grows or requires more robustness."**
+
+Different tools have different strengths and philosophies. What we learned today was a part of the reason why the tool called Vue values TypeScript so much. In the future, when you encounter various tools, I'd be happy if you remember this "difference in philosophy between tools."
+
 ---
 *End of Episode 5*

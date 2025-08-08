@@ -1,0 +1,125 @@
+# 連載「どうしてもVue.jsが分からないので森の博士の研究所に押しかけてみたら、人生が激変した子タヌキの話」シリーズ英訳ガイドライン
+
+## 0. 全体ルール
+
+* マークダウンの構造は、日本語記事と全く同じ構造になるようにしてください。
+* やり方は、第一話の英訳ファイル（src/content/blog/en/ponkichi_vue_1.md）を参考に。
+* 注釈は、英文は第一話の英訳をそのまま使いまわすこと。
+
+---
+
+## 1. **タイトル・人物名・用語の統一**
+
+* **シリーズ名・タイトル**
+
+  * シリーズタイトルの英訳は「Ponkichi’s Vue.js Adventure: The Day His Life Changed at the Forest Doctor’s Lab」で固定。
+  * 日本語タイトルの雰囲気を壊さず、自然な英語タイトルを毎回付けること（例："The Tale of Ponkichi: A Young Raccoon Dog Whose Life Changed in a Mysterious Lab" など）。
+  * サブタイトルや話数表現も統一されたパターンにする（例："Episode 1: A Mysterious Encounter in the Lab"）。
+* **登場人物の名前**
+
+  * **ポン吉**：「Ponkichi」とローマ字表記で統一。
+  * **フロントエンド博士**：「Dr. Frontend」（または「Frontend Doctor」）で統一。文脈に応じて "the Frontend Doctor" も可。
+* **用語・テクノロジー名**
+
+  * プログラミング用語やフレームワーク名（Vue.jsなど）は公式表記（英語）を使用し、解説のニュアンスは崩さないこと。
+
+---
+
+## 2. **目次・構成要素の英訳ルール**
+
+* 各記事の冒頭メタデータ（description, title, tagsなど）は正しい英語に翻訳する。
+
+  * **例**
+
+    * description: "A series: 'The Tale of Ponkichi, the Young Raccoon Dog Whose Life Changed after Visiting the Lab of the Forest Doctor, Unable to Understand Vue.js.' Ponkichi dreams of becoming a frontend engineer and dives into the world of Vue.js with a genius doctor!"
+    * title: "Episode 1: A Mysterious Encounter in the Lab"
+* **目次やセクション見出し**
+
+  * 原則として直訳ではなく、英語らしい自然な表現を採用。
+  * Section titles例：
+
+    * 登場人物紹介 → "Characters"
+    * 今日のまとめ → "Today's Takeaways" または "Summary of the Day"
+    * 次回予告 → "Next Episode Preview"
+    * 博士からの補足 → "Doctor’s Note" または "A Note from the Doctor"
+* 章番号や話数は\*\*"Episode 1", "Episode 2"\*\* のように統一。
+
+---
+
+## 3. **会話文・キャラクター性の再現**
+
+* キャラクターごとの話し方の特徴（博士の優しさ、ポン吉の純粋さ）はできるだけ英語でも再現すること。
+* フォーマットは原文と同じく**会話形式**を維持し、"Dr." "Ponkichi:"などキャラクター名＋コロンで書き出す。
+* 日本語独特のオノマトペや表現は、英語の自然な表現に置き換える（例："ポン！" → "Boing!" や "Yay!" など、可愛さ・雰囲気が伝わる表現を選ぶ）。
+
+---
+
+## 4. **技術解説パートの訳し方**
+
+* コード解説や例は**説明の流れ・親しみやすさ**を維持しつつ、専門用語や概念は英語のプログラミング学習者にも理解できるように言い換える。
+* 技術的な比喩（料理の材料/器など）は、必要に応じて英語で伝わりやすい例えに変更してもよい。
+* 補足や注意事項も**自然なトーン**で英語化する。
+
+---
+
+## 5. **脚注・補足情報の扱い**
+
+* 脚注や博士の補足パート（「博士からの補足」など）は "Doctor’s Note" セクションとして、別枠で分かりやすく。
+* 補足説明では英語話者にとってわかりやすい背景情報を適宜追加しても良い。
+
+---
+
+## 6. **翻訳文体・トーン**
+
+* **一貫して明るく親しみやすいトーン**を保つこと。
+* "子どもでもわかる・やさしい語り口"を意識する（ただし稚拙になりすぎないように）。
+* 複雑な文になりすぎないよう注意し、原文のテンポ感を尊重。
+
+---
+
+## 7. **翻訳チェック項目**（AI/担当者向け）
+
+* タイトルや人物名・話数表現はブレていないか？
+* キャラクターの口調や個性は再現されているか？
+* 専門用語・技術用語は適切に置き換えられているか？
+* 記事のセクションやまとめが英語話者にとって自然な構成か？
+* 誤訳や意味が通じない箇所がないか再確認。
+* （必要に応じて）用語や人物名の統一リストを別途作成し、毎回参照すること。
+
+---
+
+## 8. **用語・人物名 統一リスト（サンプル）**
+
+| 日本語       | 英訳（統一）                       |
+| --------- | ---------------------------- |
+| ポン吉       | Ponkichi                     |
+| フロントエンド博士 | Dr. Frontend/Frontend Doctor |
+| 森の博士      | Forest Doctor                |
+| 研究所       | Lab / Laboratory             |
+| 第一話       | Episode 1                    |
+| 次回予告      | Next Episode Preview         |
+| 今日のまとめ    | Today's Takeaways            |
+| 博士からの補足   | Doctor's Note                |
+
+---
+
+## 9. **その他**
+
+* 原文にない補足・注記が必要な場合は、原文を損なわず自然な範囲で追加して良い。
+* シリーズ全体で**英語タイトル、タグ、キャラクター名の揺れが発生しないよう必ず確認**。
+* 原則として原文が示す順序・見出し構造を英語でも維持する。
+
+---
+
+### **（参考）主要セクション訳例**
+
+* "登場人物紹介" → "Characters"
+* "第一話「不思議な研究所での出会い」" → "Episode 1: A Mysterious Encounter in the Lab"
+* "今日のまとめ" → "Today's Takeaways"
+* "次回予告「初めてのcreateApp体験」" → "Next Episode Preview: Ponkichi’s First createApp Experience"
+* "博士からの補足" → "Doctor's Note"
+
+---
+
+以上のガイドラインをもとに、今後の記事英訳をお願いします。
+ご要望があれば、さらに細分化・アップデートも可能ですのでお知らせください！

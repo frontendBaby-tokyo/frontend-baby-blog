@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import PostListItem from './PostListItem.astro'
+import { getPostSlugWithoutLang } from '@/utils'
 
 type Props = {
 	posts: CollectionEntry<'blog'>[]
@@ -18,7 +19,7 @@ const { posts } = Astro.props
 				<PostListItem
 					id={post.id}
 					data={post.data}
-					slug={post.slug}
+					slug={getPostSlugWithoutLang(post)}
 					readTime={remarkPluginFrontmatter.minutesRead}
 				/>
 			)

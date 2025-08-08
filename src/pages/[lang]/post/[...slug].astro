@@ -15,18 +15,16 @@ import type { Languages } from '@/i18n/utils'
 const posts = await getCollection('blog')
 
 export async function getStaticPaths() {
-	const posts = await getPosts()
-	const languages = ['ja', 'en'] as const
+	const posts = await getCollection('blog')
+	return posts.map((post) => {
+		const [lang, ...slugParts] = post.id.split('/')
+		const slug = slugParts.join('/').replace(/\.md$/, '')
 
-	return languages.flatMap((lang) =>
-		posts.map((post) => ({
-			params: {
-				lang,
-				slug: post.slug
-			},
-			props: { post, lang }
-		}))
-	)
+		return {
+			params: { lang: lang, slug: slug },
+			props: { post }
+		}
+	})
 }
 
 type Props = {
@@ -42,7 +40,10 @@ const MAX_POSTS = 3
 const getRelatedPosts = (post: CollectionEntry<'blog'>) => {
 	const lowercaseTags = post.data.tags.map((tag) => tag.toLowerCase())
 	const relatedPosts = posts.filter(
-		(p) => p.slug !== post.slug && p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
+		(p) =>
+			p.id.startsWith(`${lang}/`) &&
+			p.slug !== post.slug &&
+			p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
 	)
 	return relatedPosts.slice(0, MAX_POSTS)
 }

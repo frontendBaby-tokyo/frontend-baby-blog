@@ -31,7 +31,7 @@ const t = useTranslations(lang as Languages)
 
 // スラッグからタグキーを逆引き
 const tagKey = getTagKeyFromSlug(lang as Languages, tag as string) || ''
-const posts = await getPostByTag(tagKey)
+const posts = await getPostByTag(lang as Languages, tagKey)
 const translatedTag = t(tagKey as any)
 ---
 

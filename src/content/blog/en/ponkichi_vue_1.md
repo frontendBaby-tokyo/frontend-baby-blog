@@ -1,5 +1,4 @@
 ---
-heroImage: /src/assets/images/placeholder-social.jpg
 description: "Ponkichi dreams of becoming a frontend engineer and dives into the world of Vue.js with a genius doctor!"
 pubDate: 2025-07-30T15:00:00.000Z
 recommended: true

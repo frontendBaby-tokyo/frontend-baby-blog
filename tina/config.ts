@@ -27,14 +27,6 @@ export default defineConfig({
 				format: 'mdx',
 				fields: [
 					{
-						type: 'image',
-						label: 'Cover Image',
-						required: true,
-						name: 'heroImage',
-						description: 'The image used for the cover of the post'
-					},
-
-					{
 						type: 'string',
 						label: 'description',
 						required: true,

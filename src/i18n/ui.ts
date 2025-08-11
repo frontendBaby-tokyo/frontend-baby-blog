@@ -31,6 +31,9 @@ export const ui = {
 		'pagination.next': '次のページ',
 		'pagination.page': 'ページ',
 		'related.posts': '関連記事',
+		/*
+		 * tag, slug
+		 */
 		'tags.tech.vue': 'Vue',
 		'tags.tech.vue.slug': 'vue',
 		'tags.character.ponkichi': 'ポン吉',
@@ -38,7 +41,9 @@ export const ui = {
 		'tags.series.ponkichi-to-vue': 'ポン吉とVue',
 		'tags.series.ponkichi-to-vue.slug': 'ponkichi-and-vue',
 		'tags.genre.tech-light-novel': 'テック系ラノベ',
-		'tags.genre.tech-light-novel.slug': 'tech-light-novel'
+		'tags.genre.tech-light-novel.slug': 'tech-light-novel',
+		'tags.tech.threejs': 'Three.js',
+		'tags.tech.threejs.slug': 'threejs'
 	},
 	en: {
 		'nav.home': 'Home',
@@ -63,6 +68,9 @@ export const ui = {
 		'pagination.next': 'Next',
 		'pagination.page': 'Page',
 		'related.posts': 'Related Posts',
+		/*
+		 * tag, slug
+		 */
 		'tags.tech.vue': 'Vue',
 		'tags.tech.vue.slug': 'vue',
 		'tags.character.ponkichi': 'Ponkichi',

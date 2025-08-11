@@ -1,0 +1,177 @@
+# 連載「Three.js ってなんだろう？ カエル君と学ぶ、ブラウザ3Dの不思議な世界」シリーズ英訳ガイドライン
+
+## 0. 全体ルール
+
+* マークダウンの構造は、日本語記事と全く同じ構造になるようにしてください。
+* やり方は、第一話の英訳ファイル（作成時の参考用）を基準に。
+* description, recommended, tagsは第一話をそのまま使いまわすこと。
+* 注釈は、英文は第一話の英訳をそのまま使いまわすこと。
+
+---
+
+## 1. **タイトル・人物名・用語の統一**
+
+* **シリーズ名・タイトル**
+
+  * シリーズタイトルの英訳は「What is Three.js? Froggy's Journey into the Wonderful World of Browser 3D」で固定。
+  * 日本語タイトルの雰囲気を壊さず、自然な英語タイトルを毎回付けること（例："The Dawn of Browser 3D" など）。
+  * サブタイトルや話数表現も統一されたパターンにする（例："Episode 1: Before the Dawn of Browser 3D"）。
+
+* **登場人物の名前**
+
+  * **カエル君**：「Froggy」で統一。愛称として親しみやすく、英語圏で自然。
+  * **三郎先生**：「Professor Saburo」（または「Prof. Saburo」）で統一。文脈に応じて "Professor" も可。
+
+* **用語・テクノロジー名**
+
+  * プログラミング用語やライブラリ名（Three.js、WebGLなど）は公式表記（英語）を使用し、解説のニュアンスは崩さないこと。
+
+---
+
+## 2. **目次・構成要素の英訳ルール**
+
+* 各記事の冒頭メタデータ（description, title, tagsなど）は正しい英語に翻訳する。
+
+  * **例**
+    * description: "A series: 'What is Three.js? Froggy's Journey into the Wonderful World of Browser 3D.' Join Froggy, an enthusiastic young frog, as he explores the mysteries of 3D graphics in the browser with the wise Professor Saburo!"
+    * title: "Episode 1: Before the Dawn of Browser 3D"
+
+* **目次やセクション見出し**
+
+  * 原則として直訳ではなく、英語らしい自然な表現を採用。
+  * Section titles例：
+    * 登場人物紹介 → "Characters"
+    * 今日のまとめ → "Today's Takeaways" または "Summary of the Day"
+    * 次回予告 → "Next Episode Preview"
+    * 先生からの補足 → "Professor's Note" または "A Note from the Professor"
+
+* 章番号や話数は**"Episode 1", "Episode 2"** のように統一。
+
+---
+
+## 3. **会話文・キャラクター性の再現**
+
+* **Froggy（カエル君）の口調**
+  * 「〜ケロ」→「〜ribbit」で統一
+  * 元気で好奇心旺盛な性格を英語でも表現
+  * 例：「Hello, Professor Saburo, ribbit! I have something I want to ask you today, ribbit!」
+
+* **Professor Saburo（三郎先生）の口調**
+  * 優しく知識豊富な博士らしい丁寧で温かい語調
+  * 「〜だね」「〜だよ」→自然な英語の親しみやすい表現に
+
+* フォーマットは原文と同じく**会話形式**を維持し、"Froggy:" "Professor Saburo:"などキャラクター名＋コロンで書き出す。
+
+* 日本語独特のオノマトペや表現は、英語の自然な表現に置き換える
+  * 「ピョンピョン！」→「Hop hop!」や「Bounce bounce!」
+  * 「グリグリ」→「smoothly rotating」「spinning around」など
+
+---
+
+## 4. **技術解説パートの訳し方**
+
+* コード解説や例は**説明の流れ・親しみやすさ**を維持しつつ、専門用語や概念は英語のプログラミング学習者にも理解できるように言い換える。
+* 技術的な比喩は、英語で伝わりやすい例えに変更してもよい。
+* 補足や注意事項も**自然なトーン**で英語化する。
+* 歴史的な技術（VRML、Flash、Shockwaveなど）の説明も、英語圏の読者にとって分かりやすい文脈で紹介。
+
+---
+
+## 5. **脚注・補足情報の扱い**
+
+* 脚注や先生の補足パート（「先生からの補足」など）は "Professor's Note" セクションとして、別枠で分かりやすく。
+* 補足説明では英語話者にとってわかりやすい背景情報を適宜追加しても良い。
+* 「注」セクション → "Note" として、生成AIに関する注意書きも適切に英訳。
+
+---
+
+## 6. **翻訳文体・トーン**
+
+* **一貫して明るく親しみやすいトーン**を保つこと。
+* "子どもでもわかる・やさしい語り口"を意識する（ただし稚拙になりすぎないように）。
+* 複雑な文になりすぎないよう注意し、原文のテンポ感を尊重。
+* Froggyの好奇心と Professor Saburo の優しさが伝わるような訳文にする。
+
+---
+
+## 7. **翻訳チェック項目**（AI/担当者向け）
+
+* タイトルや人物名・話数表現はブレていないか？
+* キャラクターの口調や個性は再現されているか？
+* 専門用語・技術用語は適切に置き換えられているか？
+* 記事のセクションやまとめが英語話者にとって自然な構成か？
+* 誤訳や意味が通じない箇所がないか再確認。
+* （必要に応じて）用語や人物名の統一リストを別途作成し、毎回参照すること。
+
+---
+
+## 8. **用語・人物名 統一リスト**
+
+| 日本語         | 英訳（統一）                           |
+| ----------- | --------------------------------- |
+| カエル君        | Froggy                            |
+| 三郎先生        | Professor Saburo/Prof. Saburo     |
+| 〜ケロ         | 〜ribbit                          |
+| ピョンピョン      | Hop hop! / Bounce bounce!         |
+| グリグリ動く      | spinning around / rotating        |
+| 第一話         | Episode 1                         |
+| 次回予告        | Next Episode Preview              |
+| 今日のまとめ      | Today's Takeaways                 |
+| 先生からの補足     | Professor's Note                  |
+| 登場人物紹介      | Characters                        |
+| ブラウザ3D      | Browser 3D                        |
+| 立体的な絵       | 3D graphics / 3D visuals          |
+| 物知り博士       | knowledgeable professor           |
+
+---
+
+## 9. **技術用語の扱い**
+
+| 日本語           | 英訳（統一）                                    |
+| ------------- | ----------------------------------------- |
+| Three.js      | Three.js（そのまま）                           |
+| WebGL         | WebGL（そのまま）                             |
+| VRML          | VRML（Virtual Reality Modeling Language） |
+| Flash         | Flash（そのまま）                             |
+| Shockwave     | Shockwave（そのまま）                         |
+| プラグイン         | plugin                                    |
+| ライブラリ         | library                                   |
+| 3Dグラフィックス     | 3D graphics                               |
+| 仮想現実モデリング言語   | Virtual Reality Modeling Language        |
+
+---
+
+## 10. **その他**
+
+* 原文にない補足・注記が必要な場合は、原文を損なわず自然な範囲で追加して良い。
+* シリーズ全体で**英語タイトル、タグ、キャラクター名の揺れが発生しないよう必ず確認**。
+* 原則として原文が示す順序・見出し構造を英語でも維持する。
+* Froggyの「〜ribbit」は文末に自然に付ける。無理に全ての文に付ける必要はない。
+
+---
+
+### **（参考）主要セクション訳例**
+
+* "注" → "Note"
+* "登場人物紹介" → "Characters"
+* "第一話「ブラウザ3Dの夜明け前」" → "Episode 1: Before the Dawn of Browser 3D"
+* "今日のまとめ" → "Today's Takeaways"
+* "次回予告" → "Next Episode Preview"
+* "先生からの補足" → "Professor's Note"
+
+---
+
+### **（参考）会話例**
+
+**日本語原文:**
+カエル君: 「三郎先生、こんにちはケロ！」
+三郎先生: 「おお、カエル君。こんにちは。」
+
+**英訳例:**
+Froggy: "Hello, Professor Saburo, ribbit!"
+Professor Saburo: "Oh, hello there, Froggy!"
+
+---
+
+以上のガイドラインをもとに、今後の記事英訳をお願いします。
+ご要望があれば、さらに細分化・アップデートも可能ですのでお知らせください！

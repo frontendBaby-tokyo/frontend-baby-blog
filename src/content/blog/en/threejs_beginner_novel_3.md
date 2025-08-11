@@ -1,7 +1,7 @@
 ---
 description: "A series: What is Three.js? Froggy's Journey into the Wonderful World of Browser 3D."
 pubDate: 2025-08-07T15:00:00.000Z
-recommended: true
+recommended: false
 tags:
   - tags.tech.threejs
   - tags.genre.tech-light-novel

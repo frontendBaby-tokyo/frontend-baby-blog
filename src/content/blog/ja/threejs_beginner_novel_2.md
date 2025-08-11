@@ -1,7 +1,7 @@
 ---
 description: 連載「Three.js ってなんだろう？ カエル君と学ぶ、ブラウザ3Dの不思議な世界」
 pubDate: 2025-08-07T13:00:00.000Z
-recommended: true
+recommended: false
 tags:
   - tags.tech.threejs
   - tags.genre.tech-light-novel

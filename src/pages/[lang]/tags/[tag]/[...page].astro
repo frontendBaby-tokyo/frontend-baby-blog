@@ -9,7 +9,7 @@ import { ui } from '@/i18n/ui'
 import type { Languages } from '@/i18n/utils'
 import { siteConfig } from '@/data/site.config'
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async ({ paginate }) => {
 	const tags = await getTags()
 	const paths = []
 
@@ -17,45 +17,46 @@ export const getStaticPaths = async () => {
 		const jaSlug = ui.ja[`${tag}.slug` as any]
 		const enSlug = ui.en[`${tag}.slug` as any]
 
+		// 日本語のタグページ
 		if (jaSlug) {
-			paths.push({ params: { lang: 'ja', tag: jaSlug } })
+			const jaPosts = await getPostByTag('ja' as Languages, tag)
+			const paginatedPosts = paginate(jaPosts, {
+				params: { lang: 'ja', tag: jaSlug },
+				pageSize: siteConfig.paginationSize
+			})
+			paths.push(...paginatedPosts)
 		}
+
+		// 英語のタグページ
 		if (enSlug) {
-			paths.push({ params: { lang: 'en', tag: enSlug } })
+			const enPosts = await getPostByTag('en' as Languages, tag)
+			const paginatedPosts = paginate(enPosts, {
+				params: { lang: 'en', tag: enSlug },
+				pageSize: siteConfig.paginationSize
+			})
+			paths.push(...paginatedPosts)
 		}
 	}
 
 	return paths
 }
 
+const { page } = Astro.props
 const { lang, tag } = Astro.params
 const t = useTranslations(lang as Languages)
 
 // スラッグからタグキーを逆引き
 const tagKey = getTagKeyFromSlug(lang as Languages, tag as string) || ''
-const allPosts = await getPostByTag(lang as Languages, tagKey)
 const translatedTag = t(tagKey as any)
 
-// 1ページ目の記事を取得
-const posts = allPosts.slice(0, siteConfig.paginationSize)
-
-// ページネーション情報を計算
-const totalPages = Math.ceil(allPosts.length / siteConfig.paginationSize)
-const hasNextPage = totalPages > 1
-
-// ページ情報オブジェクトを作成（Paginationコンポーネント用）
-const pageInfo = {
-	currentPage: 1,
-	lastPage: totalPages,
-	start: 0,
-	url: {
-		next: hasNextPage ? `${import.meta.env.BASE_URL}${lang}/tags/${tag}/2/` : null,
-		prev: null
-	}
-}
+// メタデータの設定
+const title =
+	page.currentPage === 1
+		? `${t('tags.taggedWith')} ${translatedTag}`
+		: `${t('tags.taggedWith')} ${translatedTag} - ${t('pagination.page')} ${page.currentPage}`
 ---
 
-<BaseLayout title={`${t('tags.taggedWith')} ${translatedTag}`}>
+<BaseLayout title={title}>
 	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
 	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
 		<!-- メインコンテンツ -->
@@ -67,13 +68,13 @@ const pageInfo = {
 						: `${t('tags.taggedWith')} "#${translatedTag}"`
 				}
 			</h2>
-			<ListPostsSimple posts={posts} />
+			<ListPostsSimple posts={page.data} />
 
 			<!-- ページネーション -->
 			{
-				totalPages > 1 && (
+				page.lastPage > 1 && (
 					<div class='mt-8'>
-						<Pagination page={pageInfo} />
+						<Pagination page={page} />
 					</div>
 				)
 			}

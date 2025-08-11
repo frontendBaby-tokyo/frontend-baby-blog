@@ -33,7 +33,7 @@ const pageInfo = {
 	lastPage: totalPages,
 	start: 0,
 	url: {
-		next: hasNextPage ? `/${lang}/2/` : null,
+		next: hasNextPage ? `${import.meta.env.BASE_URL}${lang}/2/` : null,
 		prev: null
 	}
 }

@@ -1,0 +1,74 @@
+---
+import ListPostsSimple from '@/components/ListPostsSimple'
+import Sidebar from '@/components/Sidebar'
+import Pagination from '@/components/Pagination'
+import BaseLayout from '@/layouts/BaseLayout'
+import { getCollection } from 'astro:content'
+import { useTranslations } from '@/i18n/utils'
+import type { Languages } from '@/i18n/utils'
+import { siteConfig } from '@/data/site.config'
+
+export async function getStaticPaths({ paginate }) {
+	// 全ての記事を取得
+	const allPosts = await getCollection('blog', ({ data }) => !data.draft)
+
+	// 日本語の記事をフィルタリングして日付順でソート
+	const jaPosts = allPosts
+		.filter(({ id }) => id.startsWith('ja/'))
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+	// 英語の記事をフィルタリングして日付順でソート
+	const enPosts = allPosts
+		.filter(({ id }) => id.startsWith('en/'))
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+	// 各言語でページネーションを生成
+	return [
+		...paginate(jaPosts, {
+			params: { lang: 'ja' },
+			pageSize: siteConfig.paginationSize
+		}),
+		...paginate(enPosts, {
+			params: { lang: 'en' },
+			pageSize: siteConfig.paginationSize
+		})
+	]
+}
+
+const { page } = Astro.props
+const { lang } = Astro.params
+const t = useTranslations(lang as Languages)
+
+// メタデータの設定
+const title =
+	page.currentPage === 1
+		? t('nav.home')
+		: `${t('nav.home')} - ${t('pagination.page')} ${page.currentPage}`
+---
+
+<BaseLayout title={title}>
+	<!-- 2カラムレイアウト: メインコンテンツ + サイドバー -->
+	<div class='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 mt-6'>
+		<!-- メインコンテンツ -->
+		<main>
+			<h2 class='text-lg font-medium tracking-wide mb-4 text-gray-900 dark:text-white'>
+				{t('posts.latest')}
+			</h2>
+			<ListPostsSimple posts={page.data} />
+
+			<!-- ページネーション -->
+			{
+				page.lastPage > 1 && (
+					<div class='mt-8'>
+						<Pagination page={page} />
+					</div>
+				)
+			}
+		</main>
+
+		<!-- サイドバー -->
+		<div class='md:order-last'>
+			<Sidebar />
+		</div>
+	</div>
+</BaseLayout>

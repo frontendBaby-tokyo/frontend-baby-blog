@@ -1,19 +1,42 @@
 ---
 import ListPostsSimple from '@/components/ListPostsSimple'
 import Sidebar from '@/components/Sidebar'
+import Pagination from '@/components/Pagination'
 import BaseLayout from '@/layouts/BaseLayout'
-import { getPosts } from '@/utils'
+import { getCollection } from 'astro:content'
 import { useTranslations } from '@/i18n/utils'
 import type { Languages } from '@/i18n/utils'
+import { siteConfig } from '@/data/site.config'
 
 export async function getStaticPaths() {
 	return [{ params: { lang: 'ja' } }, { params: { lang: 'en' } }]
 }
 
 const { lang } = Astro.params
-const MAX_POSTS = 5 // max number of posts to show on the home page
-const posts = await getPosts(lang as Languages, MAX_POSTS)
 const t = useTranslations(lang as Languages)
+
+// 1ページ目の記事を取得（ページネーションの1ページ目と同じロジック）
+const allPosts = await getCollection('blog', ({ data }) => !data.draft)
+const posts = allPosts
+	.filter(({ id }) => id.startsWith(`${lang}/`))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, siteConfig.paginationSize)
+
+// 総記事数からページネーションの情報を計算
+const totalPosts = allPosts.filter(({ id }) => id.startsWith(`${lang}/`)).length
+const totalPages = Math.ceil(totalPosts / siteConfig.paginationSize)
+const hasNextPage = totalPages > 1
+
+// ページ情報オブジェクトを作成（Paginationコンポーネント用）
+const pageInfo = {
+	currentPage: 1,
+	lastPage: totalPages,
+	start: 0,
+	url: {
+		next: hasNextPage ? `/${lang}/2/` : null,
+		prev: null
+	}
+}
 ---
 
 <BaseLayout title={t('nav.home')}>
@@ -25,6 +48,15 @@ const t = useTranslations(lang as Languages)
 				{t('posts.latest')}
 			</h2>
 			<ListPostsSimple posts={posts} />
+
+			<!-- ページネーション -->
+			{
+				totalPages > 1 && (
+					<div class='mt-8'>
+						<Pagination page={pageInfo} />
+					</div>
+				)
+			}
 		</main>
 
 		<!-- サイドバー -->

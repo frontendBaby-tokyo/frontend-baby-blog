@@ -43,7 +43,9 @@ export const ui = {
 		'tags.genre.tech-light-novel': 'テック系ラノベ',
 		'tags.genre.tech-light-novel.slug': 'tech-light-novel',
 		'tags.tech.threejs': 'Three.js',
-		'tags.tech.threejs.slug': 'threejs'
+		'tags.tech.threejs.slug': 'threejs',
+		'tags.tech.web3': 'web3',
+		'tags.tech.web3.slug': 'web3'
 	},
 	en: {
 		'nav.home': 'Home',
@@ -78,6 +80,8 @@ export const ui = {
 		'tags.series.ponkichi-to-vue': 'Ponkichi and Vue',
 		'tags.series.ponkichi-to-vue.slug': 'ponkichi-and-vue',
 		'tags.genre.tech-light-novel': 'Tech Light Novel',
-		'tags.genre.tech-light-novel.slug': 'tech-light-novel'
+		'tags.genre.tech-light-novel.slug': 'tech-light-novel',
+		'tags.tech.web3': 'web3',
+		'tags.tech.web3.slug': 'web3'
 	}
 } as const

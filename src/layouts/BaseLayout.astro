@@ -14,6 +14,17 @@ const { lang } = Astro.params
 <html lang={lang} class='scroll-smooth'>
 	<head>
 		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
+		{
+			import.meta.env.PROD && (
+				<>
+					<script async src='https://www.googletagmanager.com/gtag/js?id=G-JDY9HH20GV' />
+					<script is:inline>
+						window.dataLayer = window.dataLayer || [] function gtag() {dataLayer.push(arguments)}
+						gtag('js', new Date()) gtag('config', 'G-JDY9HH20GV')
+					</script>
+				</>
+			)
+		}
 		<ProviderTheme />
 		<ProviderAnimations />
 	</head>

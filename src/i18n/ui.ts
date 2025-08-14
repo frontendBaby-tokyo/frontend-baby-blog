@@ -45,7 +45,13 @@ export const ui = {
 		'tags.tech.threejs': 'Three.js',
 		'tags.tech.threejs.slug': 'threejs',
 		'tags.tech.web3': 'web3',
-		'tags.tech.web3.slug': 'web3'
+		'tags.tech.web3.slug': 'web3',
+		'tags.tech.ecmascript': 'ECMAScript',
+		'tags.tech.ecmascript.slug': 'ecmascript',
+		'tags.tech.javascript': 'JavaScript',
+		'tags.tech.javascript.slug': 'javascript',
+		'tags.tech.array': 'Array',
+		'tags.tech.array.slug': 'array'
 	},
 	en: {
 		'nav.home': 'Home',
@@ -82,6 +88,12 @@ export const ui = {
 		'tags.genre.tech-light-novel': 'Tech Light Novel',
 		'tags.genre.tech-light-novel.slug': 'tech-light-novel',
 		'tags.tech.web3': 'web3',
-		'tags.tech.web3.slug': 'web3'
+		'tags.tech.web3.slug': 'web3',
+		'tags.tech.ecmascript': 'ECMAScript',
+		'tags.tech.ecmascript.slug': 'ecmascript',
+		'tags.tech.javascript': 'JavaScript',
+		'tags.tech.javascript.slug': 'javascript',
+		'tags.tech.array': 'Array',
+		'tags.tech.array.slug': 'array'
 	}
 } as const

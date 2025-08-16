@@ -30,6 +30,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@astrojs/partytown": "^2.1.4",
 		"@astrojs/react": "^4.3.0",
 		"@astrojs/rss": "4.0.12",
 		"@types/react": "^19.1.8",

@@ -1,15 +1,19 @@
 import { defineConfig } from 'astro/config'
-import react from '@astrojs/react';
+import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/readTime.ts'
 import { siteConfig } from './src/data/site.config'
+import partytown from '@astrojs/partytown'
 
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
-	base: process.env.GITHUB_ACTIONS || process.env.NODE_ENV === 'production' ? '/frontend-baby-blog/' : '/',
+	base:
+		process.env.GITHUB_ACTIONS || process.env.NODE_ENV === 'production'
+			? '/frontend-baby-blog/'
+			: '/',
 	output: 'static',
 	i18n: {
 		defaultLocale: 'ja',
@@ -32,8 +36,8 @@ export default defineConfig({
 			shikiConfig: {
 				experimentalThemes: {
 					light: 'vitesse-light',
-					dark: 'material-theme-palenight',
-				  },
+					dark: 'material-theme-palenight'
+				},
 				wrap: true
 			},
 			drafts: true
@@ -42,7 +46,12 @@ export default defineConfig({
 		tailwind(),
 		react({
 			include: ['**/react/*'],
-			experimentalReactChildren: true,
+			experimentalReactChildren: true
 		}),
+		partytown({
+            config: {
+                forward: ["dataLayer.push"],
+            },
+        })
 	]
 })

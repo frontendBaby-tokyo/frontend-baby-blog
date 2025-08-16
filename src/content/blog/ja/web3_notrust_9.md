@@ -5,7 +5,7 @@ recommended: false
 tags:
   - tags.genre.tech-light-novel
   - tags.tech.web3
-title: 第9話 「」 
+title: 第9話 「NFTの真実 後編：オンチェーンの革命」 
 ---
 
 ## 信頼ゼロ社会を生きるWEB3.0原理主義エンジニアの奇妙すぎる日常に翻弄される僕 ～フルノードを立てなきゃDAppも使えません！
